@@ -7,10 +7,16 @@
 \pagestyle{fancy}
 \fancyhead{}
 % \fancyhead[LO,LE]{Chapter \thechapter}
-\fancyhead[LO,LE]{\leftmark}
+\fancyhead[LO]{\leftmark}
 \fancyfoot{}
-\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[CO]{\thepage}
 \usepackage{indentfirst}
+\usepackage{tocbibind}
+
+% use style=superborder to create table
+\usepackage[acronym,nomain,nopostdot,nogroupskip,style=super,nonumberlist,toc]{glossaries}
+% Generate the glossary
+\makeglossaries
 
 
 \title{
@@ -21,17 +27,27 @@
 \author{Student: Tuan-Hung VU\\ID: 1450231}
 \date{Day Month Year}
 
+% %Term definitions
+% \newglossaryentry{alu}{name=ALU, description={Arithmetic Logic Unit}}
+% \newglossaryentry{mcu}{name=MCU, description={Microcontroller Unit}}
+% \newglossaryentry{cu}{name=CU, description={Control Unit}}
+\newacronym{alu}{ALU}{Arithmetic Logic Unit}
+\newacronym{mcu}{MCU}{Microcontroller Unit}
+\newacronym{cu}{CU}{Control Unit}
+\newacronym{rom}{ROM}{Read-only memory}
 
+%------------------------------------------------------------
 \begin{document}
 %make title works
 \maketitle
-% Front matters
+%------------------------------------------------------------
+\pagenumbering{roman}
 \chapter*{Abstract}
-Abstract goes hereasdas
+\input{chapters/abstract}
 
 \chapter*{Acknowledgements}
-I want to thank...
- 
+\input{chapters/acknowledgements}
+
 \tableofcontents
 % \listoffigures
 % use below block to add "Figure" in front of aption in list of figures
@@ -42,8 +58,13 @@ I want to thank...
 }
 % List of Tables
 \listoftables
-
-% Chapters
+%Print the glossary
+\printglossary[title={Acronym and Abbreviation}]
+%-------------------------------------------------------------
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+% Main Chapters
 \chapter{Introduction}
 \input{chapters/introduction}
  
@@ -60,4 +81,5 @@ I want to thank...
  
 \chapter{Conclusion}
 \input{chapters/conclusion}
+
 \end{document}
