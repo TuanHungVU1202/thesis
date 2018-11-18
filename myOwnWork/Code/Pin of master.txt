@@ -1,0 +1,26 @@
+DS3231
+
+SDA - PB9
+SCL - PB8
+
+SIM800A
+
+5 (TXD) - PD9
+6 (RXD) - PD8
+
+ESP 8266 (need jumper)
+
+TX - PD6
+RX - PD5
+
+HC06
+
+TXD - PC10
+RXD - PC11
+
+RS485
+
+DI - PB6 (U1 TX)
+DE - PB5	
+RE - PB5
+RO - PB7 (U1 RX)

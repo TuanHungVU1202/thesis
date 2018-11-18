@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GND Pin=P13-2
+Removed Pin From Net: NetName=5V Pin=P19-1
+Removed Pin From Net: NetName=GND Pin=P19-2
+Removed Pin From Net: NetName=3V3 Pin=P20-1
+Removed Pin From Net: NetName=GND Pin=P20-2
+Removed Member From Class: ClassName=Master Member=P19
+Removed Member From Class: ClassName=Master Member=P20
+Change Component Footprint: Designator=P13 Old Footprint=HDR1X2 New Footprint=Header 4
+Change Component Comment : Designator=P13 Old Comment=Header 2 New Comment=Header 4
+Added Pin To Net: NetName=5V Pin=P13-2
+Added Pin To Net: NetName=3V3 Pin=P13-3
+Added Pin To Net: NetName=GND Pin=P13-4
+Added Room: Name=Master

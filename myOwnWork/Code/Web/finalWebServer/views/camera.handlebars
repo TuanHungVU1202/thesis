@@ -1,0 +1,446 @@
+<!-- /. NAV SIDE  -->
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a href="home"><i class="fa fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="control"><i class="fa fa-list-alt"></i> Control</a>
+            </li>
+            <li>
+                <a href="scenes"><i class="fa fa-picture-o"></i> Scenes</a>
+            </li>
+            <li>
+                <a href="chart"><i class="fa fa-bar-chart-o"></i> Charts</a>
+            </li>
+            <li>
+                <a class="active-menu"><i class="fa fa-camera"></i> Outdoor Camera</a>
+            </li>
+            <li>
+                <a href="motion"><i class="fa fa-video-camera"></i> Indoor Camera</a>
+            </li>
+            <li>
+                <a href="chat"><i class="fa fa-edit"></i> Chat </a>
+            </li>
+            <li>
+                <a href="gps"><i class="fa fa-map-marker"></i> Member Tracker</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- put this before page inner (body) to load every scripts before body -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+
+<!-- for Face Recognition -->
+<script src="dist/face-api.js"></script>
+<script src="commonsForFaceApi.js"></script>
+
+<!-- /. PAGE WRAPPER  -->
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <style>
+            video, canvas {
+                position: absolute;
+            }
+            div.box{
+                position: relative;
+                text-align: center;
+                width: 100px;
+                height: 60px;
+                margin: 20px auto 10px auto;
+            }
+            div.box .letterInsideButtonState3 {
+                display: block;
+                position: absolute;
+                font-size: 26px;
+                top: 18px;
+                width: 100px;
+                color: {{device3ButtonColor}};
+                border: none;
+                background-color: white;
+            }
+            #popup {
+                width:160px;
+                height:80px;
+                padding:20px;
+                background-color:transparent;
+                position:absolute;
+                left: 10cm;
+                top:100px;
+                display:none;
+            }
+        </style>
+        <h2> OUTDOOR SECURITY CAMERA</h2>
+        <br>
+        <div>
+            <!-- Handle Popup button "Enter Master Password"-->
+            <button onclick="showPopUp()">Enter Master Password</button>
+            <div id="popup">
+                <div>Enter Master Password:</div>
+                <form action = "/logincheckCamera", method = "post">
+                <input id="masterPass" type="password" name="masterPass"/>
+                <button onclick="donePassWord()">Done</button>
+                </form>
+            </div>
+            <button id="closeDoorBtn">Close Door</button>
+        </div>
+        <br>
+        <br>
+        <div class="col-xs-6 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                        <h4> Main Door </h4>
+                        <div class="box">
+                            <div class="letterInsideButtonState3" id = "device3">{{device3state}}</div>
+                        </div>
+                </div>
+            </div>
+
+            <video onplay="onPlay(this)" id="inputVideo" autoplay muted></video>
+            <canvas id="overlay"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- put this func after body to load it right after every content on page loaded -->
+<script>
+    const MODEL_URL = '/weights';
+
+    let modelLoaded = false
+    let minFaceSize = 150
+    let maxDistance = 0.6
+    let minConfidence = 0.9                              //use this value insread of minFaceSize if using  ssdMobileNet
+
+    var isPostOpenFlag = 0
+    var isPostCloseFlag = 0
+
+    globals = {};
+    function globalVar(){
+        globals['isKnown'] = false;
+        globals['isUnknown'] = false;
+    }
+
+
+    //init functions run at the beginning
+    globalVar()
+    updateTrainingSet()
+
+    // Connect to socket.io
+    var socket= io.connect('http://127.0.0.1:1202');
+    //callback for received data
+    socket.on('messageFromOutsider', function (data) {
+        if(data === "Visitor(s) waiting!") {
+            location.reload()
+        }
+    })
+
+
+    //receive Array from server side
+    function updateTrainingSet () {
+        //received data passed to existedPeople in res.render part
+        var loadExistedPeople = "{{existedPeople}}";
+        var removeUselessChar = loadExistedPeople.replace(/(&quot\;)/g, "\"")
+        //JSON.parse convert JSON.stringtify from string back to array object
+        var receivedArray = JSON.parse(removeUselessChar)
+        //use Slice method to copy received array to classes array to train
+        classes = receivedArray.slice();
+    }
+
+
+    //function after Video is played
+    async function onPlay(videoEl) {
+        if (videoEl.paused || videoEl.ended || !modelLoaded || globals.isKnown === true || globals.isUnknown === true) {
+            return false
+        }
+        const {width, height} = faceapi.getMediaDimensions(videoEl)
+        const canvas = $('#overlay').get(0)
+        canvas.width = width
+        canvas.height = height
+
+
+        const mtcnnParams = {
+            minFaceSize
+        }
+
+
+        const fullFaceDescriptions = (await faceapi.allFacesMtcnn(videoEl, mtcnnParams))
+                .map(fd => fd.forSize(width, height))
+
+
+        //declare var bestMatch, text first for to use in another function
+        var bestMatch, text;
+        var detected = [], notDetected = [];
+        var max = 5;
+
+
+        function detectFace() {
+            fullFaceDescriptions.forEach(({detection, landmarks, descriptor}) => {
+                faceapi.drawDetection('overlay', [detection], {withScore: false})
+                faceapi.drawLandmarks('overlay', landmarks.forSize(width, height), { lineWidth: 4, color: 'red' })
+                bestMatch = getBestMatch(trainDescriptorsByClass, descriptor)
+                text = `${bestMatch.distance < maxDistance ? bestMatch.className : 'UNKNOWN'} (${bestMatch.distance})`
+                const {x, y, height: boxHeight} = detection.getBox()
+                faceapi.drawText(
+                        canvas.getContext('2d'),
+                        x,
+                        y + boxHeight,
+                        text,
+                        Object.assign(faceapi.getDefaultDrawOptions(), {color: 'red', fontSize: 16})
+                )
+
+
+                if ((bestMatch.distance < maxDistance) && (globals.isKnown === false) && (globals.isUnknown === false)) {
+                    globals.logName = bestMatch.className
+                    for (let i= 0; i <max; i++) {
+                        detected.push(bestMatch.className);
+                        //console.log(detected);
+                        //console.log(detected.length);
+                    }
+                    if (detected.length === 5){
+                        globals.isKnown = true;
+                        openDoor()
+                        updateData()
+                        $.post('/logDeviceActivities',
+                                {   'deviceId': 'F1.3',
+                                    'logState': 'on',
+                                    'Date': myTodayDate().myDate,
+                                    'Day': myTodayDate().myDay,
+                                    'Month': myTodayDate().myMonth,
+                                    'Year': myTodayDate().year,
+                                    'Time': getTime(),
+                                },
+                        )
+                        $.post('/logDetectedFace',
+                                {'detectDate': myTodayDate().myDate,
+                                    'detectDay': myTodayDate().myDay,
+                                    'detectMonth': myTodayDate().myMonth,
+                                    'detectYear': myTodayDate().year,
+                                    'detectTime': getTime(),
+                                 'detectPerson': bestMatch.className,
+                                    'permission': 'allowed'
+                                },
+                        )
+
+                        /*
+                        setTimeout(function () {
+                            closeDoor()
+                            $.post('/logDetectedFace',
+                                    {'faceDetectedTime': getDateTime(), 'detectedPerson': bestMatch.className},
+                            )
+                            updateData()
+                        }, 10000)
+                        */
+                        //console.log(globals.isKnown);
+                    }
+                }
+                if ((bestMatch.distance >= maxDistance) && (globals.isUnknown === false) && (globals.isKnown === false)) {
+                    // globals.logName = "Unknown"
+                    for (let i = 0; i <= max; i++) {
+                        notDetected.push('unknown');
+                        //console.log(notDetected);
+                        //console.log(notDetected.length);
+                    }
+                    if (notDetected.length === 6) {
+                        globals.isUnknown = true;
+                        //closeDoor()
+                        // updateData()
+                        var registerCheck = confirm('The person is not yet registered. Do you want to provide him/her an one-time password to enter?\n1. If yes, click "OK"\n2. Otherwise, click Cancel!');
+
+                        if (registerCheck == true){
+                            confirm('Please click OK to send the password to the visitor');
+                            console.log('Start generating random password');
+                            var randomPassword = Math.random().toString(36).substr(2, 4);
+                            socket.emit('getRandomPassword', randomPassword)
+                            $.post('/logDetectedFace',
+                                    {   'detectTime': getTime(),
+                                        'detectDate': myTodayDate().myDate,
+                                        'detectDay': myTodayDate().myDay,
+                                        'detectMonth': myTodayDate().myMonth,
+                                        'detectYear': myTodayDate().year,
+                                        'detectPerson': 'Unknown',
+                                        'permission': 'allowed'
+                                    },
+                            )
+                            // console.log('random pass ', randomPassword)
+                            // showPopUp();
+                        } else {
+                            alert('Denied visitor');
+                            $.post('/logDetectedFace',
+                                    {   'detectTime': getTime(),
+                                        'detectDate': myTodayDate().myDate,
+                                        'detectDay': myTodayDate().myDay,
+                                        'detectMonth': myTodayDate().myMonth,
+                                        'detectYear': myTodayDate().year,
+                                        'detectPerson': 'Unknown',
+                                        'permission': 'denied'
+                                    },
+                            )
+                        }
+                        //console.log('done');
+                        //console.log('notDetected ' + globals.isUnknown);
+                    }
+                }
+            });                                              //fullFaceDescriptions.forEach brackets
+    }
+        //measure time taken to run detectFace function
+        var t0 = performance.now();
+        detectFace()
+        var t1 = performance.now();
+        console.log('time run '+ (t1 -t0) +' ms');
+        //took approximately 3s
+
+        //console.log('out cond Known' + globals.isKnown);
+        //console.log('out cond of Unknown ' + globals.isUnknown);
+        setTimeout(() => onPlay(videoEl))
+    }
+
+
+    //first function to run after page is fully loaded
+    async function run() {
+        await faceapi.loadMtcnnModel(MODEL_URL)
+        await faceapi.loadFaceRecognitionModel(MODEL_URL)
+
+        // init reference data, e.g. compute a face descriptor for each class
+        trainDescriptorsByClass = await initTrainDescriptorsByClass(faceapi.recognitionNet)
+        modelLoaded = true
+
+        // try to access users webcam and stream the images
+        const videoEl = $('#inputVideo').get(0)
+        navigator.getUserMedia(
+                { video: {} },
+                stream => videoEl.srcObject = stream,
+                err => console.error(err)
+        )
+    }
+
+
+    //make sure page is fully loaded
+    $(document).ready(function() {
+        run()
+    })
+
+
+    //function to update the Display
+    function updateData(){
+        $.ajax({
+            url: "./state",
+            dataType: 'JSON',
+            success: function(result){
+                if(result.device3 === "on"){
+                    $("#device3").text("OPEN");
+                    $("#device3").css("color","blue");
+                }
+                if(result.device3 === "off"){
+                    $("#device3").text("CLOSED");
+                    $("#device3").css("color","red");
+                }
+            }
+        });
+    }
+
+
+    //4  functions handle Doors
+    function openDoor(){
+        if(isPostOpenFlag === 0) {
+            $.ajax({
+                url: "/device3",
+                method: 'POST',
+                dataType: 'JSON',
+                success: handleOpen
+            })
+            isPostOpenFlag = 1
+        }
+    }
+
+    function closeDoor(){
+        if(isPostCloseFlag === 0) {
+            $.ajax({
+                url: "/device3",
+                method: 'POST',
+                dataType: 'JSON',
+                success: handleClose
+            })
+            isPostCloseFlag = 1
+        }
+    }
+
+    function handleOpen(result){
+        result.device3 = "on";
+    }
+
+    function handleClose(result){
+        result.device3 = "off";
+    }
+
+
+    //function handle password entered
+    function donePassWord() {
+        document.getElementById("popup").style.display = "none";
+        //var checkMasterPass = document.getElementById("masterPass").value;
+
+        //DO STUFF WITH PASSWORD HERE
+    }
+
+    function showPopUp() {
+        document.getElementById("popup").style.display = "block";
+    }
+
+
+    //handle closeDoorBtn event
+    $("#closeDoorBtn").click(function(){
+        closeDoor()
+        updateData()
+        $.post('/logDeviceActivities',
+                {   'deviceId': 'F1.3',
+                    'logState': 'off',
+                    'Date': myTodayDate().myDate,
+                    'Day': myTodayDate().myDay,
+                    'Month': myTodayDate().myMonth,
+                    'Year': myTodayDate().year,
+                    'Time': getTime(),
+                },
+        )
+    })
+
+
+    //https://stackoverflow.com/questions/7357734/how-do-i-get-the-time-of-day-in-javascript-node-js
+    function getTime() {
+        var date = new Date();
+
+        var hour = date.getHours();
+        hour = (hour < 10 ? "0" : "") + hour;
+
+        var min  = date.getMinutes();
+        min = (min < 10 ? "0" : "") + min;
+
+        var sec  = date.getSeconds();
+        sec = (sec < 10 ? "0" : "") + sec;
+
+        // var year = date.getFullYear();
+        //
+        // var month = date.getMonth() + 1;
+        // month = (month < 10 ? "0" : "") + month;
+        //
+        // var day  = date.getDate();
+        // day = (day < 10 ? "0" : "") + day;
+
+        return hour + ":" + min + ":" + sec;
+    }
+
+    function myTodayDate(){
+        var today = new Date();
+        var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        var myTodayObj =
+                {
+                    myDate : today.getDate(),
+                    myDay : day[today.getDay()],
+                    myMonth : month[today.getMonth()],
+                    year : today.getFullYear()
+                }
+        return myTodayObj;
+    }
+</script>

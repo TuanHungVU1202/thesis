@@ -1,0 +1,10 @@
+Output: Mixed Sim
+Type  : AdvSimNetlist
+From  : Project [Power for Slaves.PrjPcb]
+   Generated File[Power for Slaves.nsx]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 8:11:24 PM On 27-May-18

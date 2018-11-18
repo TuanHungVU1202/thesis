@@ -1,0 +1,11 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C1
+Change Component Designator: OldDesignator=C? NewDesignator=C2
+Change Component Designator: OldDesignator=C? NewDesignator=C3
+Change Component Designator: OldDesignator=IC? NewDesignator=IC1
+Change Component Designator: OldDesignator=P? NewDesignator=P7
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=SW? NewDesignator=SW1
+Change Component Designator: OldDesignator=X? NewDesignator=X1
+Added Member To Class: ClassName=Slave_Relay Member=Component C2 Cap Non-pol
+Added Member To Class: ClassName=Slave_Relay Member=Component C3 Cap Non-pol
+Added Room: Name=Slave_Relay

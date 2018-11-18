@@ -1,0 +1,15 @@
+{
+  "name": "index.js",
+  "version": "1.0.0",
+  "description": "Test read, write data with mongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hung Vu",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "mongodb": "^2.2.33"
+  }
+}

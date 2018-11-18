@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=SW2 Old Footprint=SW-4P-B New Footprint=SW4
+Change Component Footprint: Designator=SW3 Old Footprint=SW-4P-B New Footprint=SW4
+Change Component Footprint: Designator=SW4 Old Footprint=SW-4P-B New Footprint=SW4
+Added Room: Name=Slave_Button

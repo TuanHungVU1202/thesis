@@ -1,0 +1,39 @@
+Added Component: Designator=P1(RJ11)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P2(RJ11)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P3(RJ11)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=12V Pin=P1-4
+Added Pin To Net: NetName=12V Pin=P1-5
+Added Pin To Net: NetName=12V Pin=P2-4
+Added Pin To Net: NetName=12V Pin=P2-5
+Added Pin To Net: NetName=12V Pin=P3-4
+Added Pin To Net: NetName=12V Pin=P3-5
+Added Net: Name=12V
+Added Pin To Net: NetName=A Pin=P1-1
+Added Pin To Net: NetName=A Pin=P2-1
+Added Pin To Net: NetName=A Pin=P3-1
+Added Net: Name=A
+Added Pin To Net: NetName=B Pin=P1-2
+Added Pin To Net: NetName=B Pin=P2-2
+Added Pin To Net: NetName=B Pin=P3-2
+Added Net: Name=B
+Added Pin To Net: NetName=GND Pin=P1-3
+Added Pin To Net: NetName=GND Pin=P1-6
+Added Pin To Net: NetName=GND Pin=P2-3
+Added Pin To Net: NetName=GND Pin=P2-6
+Added Pin To Net: NetName=GND Pin=P3-3
+Added Pin To Net: NetName=GND Pin=P3-6
+Added Net: Name=GND
+Added Class: Name=Switcher
+Added Room: Name=Switcher

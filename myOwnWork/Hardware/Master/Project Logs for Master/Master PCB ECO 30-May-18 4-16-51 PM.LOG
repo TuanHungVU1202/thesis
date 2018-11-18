@@ -1,0 +1,5 @@
+Change Component Footprint: Designator=R1 Old Footprint=DIEN TRO 0805 New Footprint=R1/4W
+Change Component Footprint: Designator=R2 Old Footprint=DIEN TRO 0805 New Footprint=R1/4W
+Change Component Footprint: Designator=R3 Old Footprint=DIEN TRO 0805 New Footprint=R1/4W
+Change Component Footprint: Designator=R4 Old Footprint=DIEN TRO 0805 New Footprint=R1/4W
+Added Room: Name=Master

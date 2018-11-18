@@ -1,0 +1,60 @@
+<!-- /. NAV SIDE  -->
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a href="outsider"><i class="fa fa-hand-o-right"></i> Welcome page for Visitors</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+
+
+<!-- /. PAGE WRAPPER  --> 
+<div id="page-wrapper" >
+    <div id="page-inner" >
+            <div class = "boxDistance">
+                <div class="col-md-5" style = "margin-left: 30%; margin-top: 10%">                     
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div align="center"><h1 style = "font-weight:bold">Login</h1></div>
+                        </div>
+                        <div class="panel-body">
+                            <form action = "/logincheck", method = "post">
+                                <br>
+                                <label>User name</label>
+                                <input class="form-control" id="username" name="username" placeholder="Username">
+                                <br>
+                                <label>Password</label>
+                                <input class="form-control" type="password" id="password" name="password" placeholder="Password">
+                                <br>
+                                <div align="center">
+                                    <button type="submit" class="btn btn-success btn-lg"> LOGIN </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+    </div>    
+</div>
+
+<script>
+    // Connect to socket.io
+    var socket= io.connect('http://127.0.0.1:1202');
+    //callback for received data
+    socket.on('messageFromOutsider', function (data) {
+        if(data === "Visitor(s) waiting!") {
+            alert(data)
+        }
+    })
+
+    socket.on('messageFromMotion', function (data) {
+        if(data === "WARNING") {
+            alert(data + ". Strange motion detected")
+        }
+    })
+</script>

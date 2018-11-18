@@ -1,0 +1,238 @@
+<!-- /. NAV SIDE  -->
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a href="home"><i class="fa fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="control"><i class="fa fa-list-alt"></i> Control</a>
+            </li>
+            <li>
+                <a href="scenes"><i class="fa fa-picture-o"></i> Scenes</a>
+            </li>
+            <li>
+                <a href="chart"><i class="fa fa-bar-chart-o"></i> Charts</a>
+            </li>
+            <li>
+                <a href="camera"><i class="fa fa-camera"></i> Outdoor Camera</a>
+            </li>
+            <li>
+                <a href="motion"><i class="fa fa-video-camera"></i> Indoor Camera</a>
+            </li>
+            <li>
+                <a class="active-menu"><i class="fa fa-edit"></i> Chat </a>
+            </li>
+            <li>
+                <a href="gps"><i class="fa fa-map-marker"></i> Member Tracker</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- /. PAGE WRAPPER  --> 
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <h2> FAMILY'S BROADCASTING CHANNEL</h2>
+        <br>
+        <div class = "container">
+            <div class = "row">
+                <div class="col-md-6 offset-md-3 col-sm-12">
+                    <h3 class="text-center">
+                        Let's chat
+                        <button id="call" type="button" class="btn btn-info">MOMMY's CALLLLLL!!!</button>
+                    </h3>
+                    <div id="status"></div>
+                    <br>
+                    <div id="chat">
+                        <input type="text" id="username"
+                               class="form-control" placeholder="Enter your name">
+                        <br>
+                        <div class="card">
+                                <div id="messages" class="card-block">
+
+                                </div>
+                        </div>
+                        <br>
+                        <textarea id="textarea"
+                                  class="form-control" placeholder="Enter message here"></textarea>
+                    </div>
+                    <br>
+                    <button id="clear" class="btn btn-danger"> !CLEAR ALL MESSAGES!</button>
+                </div>
+            </div>
+        
+        </div>
+
+    </div>    
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+
+<script>
+    (function () {
+        var element = function (id) {
+            return document.getElementById(id);
+        }
+
+        // Get elements
+        var status = element('status');
+        var messages = element('messages');
+        var textarea = element('textarea');
+        var username = element('username');
+        var clearBtn = element('clear');
+        var callBtn = element('call');
+
+
+        // Set default status
+        var statusDefault = status.textContent;
+
+        var setStatus = function (s) {
+            // Set status
+            status.textContent = s;
+
+            if(s !== statusDefault){
+                var delay = setTimeout  (function(){
+                    setStatus(statusDefault);
+                }, 1000);
+            }
+        }
+
+        // Connect to socket.io
+        var socket= io.connect('http://127.0.0.1:1202');
+
+        //callback for received data
+        socket.on('messageFromOutsider', function (data) {
+            if(data === "Visitor(s) waiting!") {
+                alert(data + "Click OK to view the visitors")
+                var url = "http://localhost:2111/camera";
+                $("<a>").attr("href", url).attr("target", "_blank")[0].click();
+            }
+        })
+
+        socket.on('messageFromMotion', function (data) {
+            if(data === "WARNING") {
+                alert(data + ". Strange motion detected")
+                var url = "http://localhost:2111/motion";
+                $("<a>").attr("href", url).attr("target", "_blank")[0].click();
+            }
+        })
+
+
+        // Check for connection
+        if(socket !== undefined){
+            console.log('connected');
+
+            // Handle output
+            socket.on('output', function (data) {
+
+                //console.log(data);
+                if (data.length) {
+                    for (var x =0; x< data.length; x++){
+                        // build out message div
+                        var message = document.createElement('div');
+                        message.setAttribute('class', 'chat-message');
+                        message.textContent = data[x].name+ ":" +data[x].message;
+                        messages.appendChild(message);
+                        messages.insertBefore(message,messages.firstChild);
+                    }
+                }
+
+            });
+
+            // Get status from Server
+            socket.on('status', function (data) {
+                // get message status
+                setStatus((typeof data === 'object')? data.message:data);
+
+                // If status is clear, clear Text
+                if (data.clear){
+                    textarea.value='';
+                }
+            });
+
+            // handle input
+            textarea.addEventListener('keydown', function (event) {
+                if(event.which === 13 && event.shiftKey == false){
+                    // Emit to server input
+                    socket.emit('input',{
+                       name:username.value,
+                       message:textarea.value
+                    });
+
+                    event.preventDefault();
+                }
+            });
+            clearBtn.addEventListener('click', function () {
+               socket.emit('clear');
+            });
+
+            callBtn.addEventListener('click', function () {
+               socket.emit('input',{
+                   name: "That's MOMMY",
+                   message: "Come out come out where-ever you are!!!"
+               }) ;
+            });
+
+            //clear mess
+            socket.on('cleared', function () {
+                messages.textContent= '';
+
+            });
+        }
+
+    })();
+</script>
+
+
+<!-- Comment in this bracket
+reference: https://www.youtube.com/watch?v=hrRue5Rt6Is
+
+<script src="http://127.0.0.1:1202/socket.io/socket.io.js"></script>
+<script> //main function for CHAT page
+    (function(){
+        var getNode = function (s) {
+            return document.querySelector(s);
+        },
+                //Get required nodes
+                textarea = getNode('.chat textarea'),
+                chatName = getNode('.chat-name');
+
+        try {
+            //var socket = io();
+            var socket = io.connect ('http://127.0.0.1:1202');
+        } catch(e){
+            //Set status to warn user
+        }
+
+        if(socket !==undefined){
+
+            //listen for keypress which is Enter to send chat Name and message to DB
+            textarea.addEventListener('keydown', function (event) {
+               var self = this,
+                   name = chatName.value;
+               //console.log(event);
+               //press Enter (13) and NOT pressing Shift, it sends message
+               if (event.which === 13 && event.shiftKey === false){
+                   console.log('sent');
+                   socket.emit('input',{
+                        "name": name,
+                        "message": self.value     //value property contain text in textarea
+                                                //self refers to textarea
+                    });
+               }
+            });
+        }
+    })();
+</script>
+
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="webRTC/js/common.js"></script>
+<script src="webRTC/js/videopipe.js"></script>
+<script src="webRTC/main.js"></script>
+<script src="webRTC/js/lib/ga.js"></script> //gg analytic
+<script>
+
+</script>
+--> 

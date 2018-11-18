@@ -1,0 +1,45 @@
+Change Component Designator: OldDesignator=P1 NewDesignator=P2
+Change Component Designator: OldDesignator=P2 NewDesignator=P3
+Change Component Designator: OldDesignator=P3 NewDesignator=P4
+Change Component Designator: OldDesignator=P4 NewDesignator=P5
+Change Component Designator: OldDesignator=P5 NewDesignator=P6
+Change Component Designator: OldDesignator=P6 NewDesignator=P7
+Change Component Designator: OldDesignator=P7 NewDesignator=P8
+Change Component Designator: OldDesignator=P8 NewDesignator=P1
+Change Component Designator: OldDesignator=P9 NewDesignator=P11
+Change Component Designator: OldDesignator=P10 NewDesignator=P12
+Change Component Designator: OldDesignator=P11 NewDesignator=P13
+Change Component Designator: OldDesignator=P12 NewDesignator=P14
+Change Component Designator: OldDesignator=P13 NewDesignator=P15
+Change Component Designator: OldDesignator=P14 NewDesignator=P17
+Change Component Designator: OldDesignator=P15 NewDesignator=P18
+Change Component Designator: OldDesignator=P16 NewDesignator=P19
+Change Component Designator: OldDesignator=P17 NewDesignator=P20
+Added Component: Designator=P9(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P10(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P16(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=12V Pin=P9-1
+Added Pin To Net: NetName=GND Pin=P9-2
+Added Pin To Net: NetName=5V Pin=P10-1
+Added Pin To Net: NetName=GND Pin=P10-2
+Added Pin To Net: NetName=3V3 Pin=P16-1
+Added Pin To Net: NetName=GND Pin=P16-2
+Change Net Name : Old Net Name=NetP10_7 New Net Name=NetP12_7
+Change Net Name : Old Net Name=NetP10_8 New Net Name=NetP12_8
+Added Member To Class: ClassName=Master Member=Component P16 Header 2
+Added Member To Class: ClassName=Master Member=Component P17 Header 8
+Added Member To Class: ClassName=Master Member=Component P18 Header 8
+Added Member To Class: ClassName=Master Member=Component P19 Header 8
+Added Member To Class: ClassName=Master Member=Component P20 Header 8

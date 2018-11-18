@@ -1,0 +1,393 @@
+<!-- <meta http-equiv="refresh" content="3"> -->
+<!-- /. NAV SIDE  -->
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a href="home"><i class="fa fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li>
+                <a class="active-menu"><i class="fa fa-list-alt"></i> Control</a>
+            </li>
+            <li>
+                <a href="scenes"><i class="fa fa-picture-o"></i> Scenes</a>
+            </li>
+            <li>
+                <a href="chart"><i class="fa fa-bar-chart-o"></i> Charts</a>
+            </li>
+            <li>
+                <a href="camera"><i class="fa fa-camera"></i> Outdoor Camera</a>
+            </li>
+            <li>
+                <a href="motion"><i class="fa fa-video-camera"></i> Indoor Camera</a>
+            </li>
+            <li>
+                <a href="chat"><i class="fa fa-edit"></i> Chat </a>
+            </li>
+            <li>
+                <a href="gps"><i class="fa fa-map-marker"></i> Member Tracker</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+
+
+<!-- /. NAV SIDE  -->      
+<div id="page-wrapper" >
+    <style>
+        img.alarmClockIcon{
+            width: 30px;
+            height: 30px;
+        }
+        div.box{
+            position: relative;
+	        text-align: center;
+	        width: 100px;
+	        height: 60px;
+	        margin: 20px auto 10px auto;
+        }
+        div.box .letterInsideButtonState1 {
+            display: block;
+            position: absolute;
+            font-size: 26px;
+            top: 18px;
+            width: 100px;
+            color: {{device1ButtonColor}};
+            border: none;
+            background-color: white;
+        }
+
+        div.box .letterInsideButtonState2 {
+            display: block;
+            position: absolute;
+            font-size: 26px;
+            top: 18px;
+            width: 100px;
+            color: {{device2ButtonColor}};
+            border: none;
+            background-color: white;
+        }
+
+        div.box .letterInsideButtonState3 {
+            display: block;
+            position: absolute;
+            font-size: 26px;
+            top: 18px;
+            width: 100px;
+            color: {{device3ButtonColor}};
+            border: none;
+            background-color: white;
+        }
+
+        div.box .letterInsideButtonState4 {
+            display: block;
+            position: absolute;
+            font-size: 26px;
+            top: 18px;
+            width: 100px;
+            color: {{device4ButtonColor}};
+            border: none;
+            background-color: white;
+        }
+
+        div.box .letterInsideButtonState5 {
+            display: block;
+            position: absolute;
+            font-size: 26px;
+            top: 18px;
+            width: 100px;
+            color: {{device5ButtonColor}};
+            border: none;
+            background-color: white;
+        }
+
+        button.buttonSetTime{
+            float: right;
+            width: 50px; 
+            height: 40px; 
+            margin-top: 15px; 
+            border: none;
+            background-color: white;
+        }
+    </style>   
+    <h2> DEVICE CONTROL PAGE</h2>
+    <br>
+    
+<!-- https://stackoverflow.com/questions/25983603/how-to-submit-html-form-without-redirection
+-->
+    <div class="col-xs-6 col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-body easypiechart-panel">
+                <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+                <form action = "/device1", method = "post", target = "hiddenFrame">
+                    <h4> F1.Front Light </h4>
+                    <div class="box">
+                        <button type="submit" class="letterInsideButtonState1" id = "device1">{{device1state}}</button>
+                    </div>
+                </form>
+
+                <button class ="buttonSetTime" data-toggle="modal" data-target="#myModal1">
+                    <img src="./img/alarmclock.png" class ="alarmClockIcon">
+                </button>
+                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action = "/submitTheTimeDevice1", method = "get">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">SET TIME FOR DEVICE</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4> Set time when turn device on </h4>
+                                    <input type="time" name="setTimeOn">
+                                    <h4> Set time when turn device off </h4>
+                                    <input type="time" name="setTimeOff">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-body easypiechart-panel">
+                 <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+                <form action = "/device2", method = "post", target = "hiddenFrame">
+                    <h4> F1.Stair Light </h4>
+                    <div class="box">
+                        <button type="submit" class="letterInsideButtonState2" id = "device2">{{device2state}}</button>
+                    </div>
+                </form>
+
+                <button class ="buttonSetTime" data-toggle="modal" data-target="#myModal2">
+                    <img src="./img/alarmclock.png" class ="alarmClockIcon">
+                </button>
+                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action = "/submitTheTimeDevice2", method = "get">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">SET TIME FOR DEVICE</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4> Set time when turn device on </h4>
+                                    <input type="time" name="setTimeOn">
+                                    <h4> Set time when turn device off </h4>
+                                    <input type="time" name="setTimeOff">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>    
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-body easypiechart-panel">
+                 <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+                <form action = "/device3", method = "post", target = "hiddenFrame">
+                    <h4> Main Door </h4>
+                    <div class="box">
+                        <button type="submit" class="letterInsideButtonState3" id = "device3">{{device3state}}</button>
+                    </div>
+                </form>
+                
+                <button class ="buttonSetTime" data-toggle="modal" data-target="#myModal3">
+                    <img src="./img/alarmclock.png" class ="alarmClockIcon">
+                </button>
+                <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action = "/submitTheTimeDevice3", method = "get">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">SET TIME FOR DEVICE</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4> Set time when turn device on </h4>
+                                    <input type="time" name="setTimeOn">
+                                    <h4> Set time when turn device off </h4>
+                                    <input type="time" name="setTimeOff">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>    
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-body easypiechart-panel">
+                 <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+                <form action = "/device4", method = "post", target = "hiddenFrame">
+                    <h4> F1.Dining Room Light </h4>
+                    <div class="box">
+                        <button type="submit" class="letterInsideButtonState4" id = "device4">{{device4state}}</button>
+                    </div>
+                </form>
+                
+                <button class ="buttonSetTime" data-toggle="modal" data-target="#myModal4">
+                    <img src="./img/alarmclock.png" class ="alarmClockIcon">
+                </button>
+                <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action = "/submitTheTimeDevice4", method = "get">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">SET TIME FOR DEVICE</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4> Set time when turn device on </h4>
+                                    <input type="time" name="setTimeOn">
+                                    <h4> Set time when turn device off </h4>
+                                    <input type="time" name="setTimeOff">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>    
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-body easypiechart-panel">
+                <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+                <form action = "/device5", method = "post", target = "hiddenFrame">
+                    <h4> F1.Bathroom Light </h4>
+                    <div class="box">
+                        <button type="submit" class="letterInsideButtonState5" id = "device5">{{device5state}}</button>
+                    </div>
+                </form>
+
+                <button class ="buttonSetTime" data-toggle="modal" data-target="#myModal4">
+                    <img src="./img/alarmclock.png" class ="alarmClockIcon">
+                </button>
+                <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action = "/submitTheTimeDevice5", method = "get">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">SET TIME FOR DEVICE</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4> Set time when turn device on </h4>
+                                    <input type="time" name="setTimeOn">
+                                    <h4> Set time when turn device off </h4>
+                                    <input type="time" name="setTimeOff">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Connect to socket.io
+    var socket= io.connect('http://127.0.0.1:1202');
+    //callback for received data
+    socket.on('messageFromOutsider', function (data) {
+        if(data === "Visitor(s) waiting!") {
+            alert(data + "Click OK to view the visitors")
+            var url = "http://localhost:2111/camera";
+            $("<a>").attr("href", url).attr("target", "_blank")[0].click();
+        }
+    })
+
+    socket.on('messageFromMotion', function (data) {
+        if(data === "WARNING") {
+            alert(data + ". Strange motion detected")
+            var url = "http://localhost:2111/motion";
+            $("<a>").attr("href", url).attr("target", "_blank")[0].click();
+        }
+    })
+
+
+    function updateData(){
+        $.ajax({
+            url: "./state",
+            dataType: 'JSON',
+            success: function(result){
+                if(result.device1 === "on"){
+                    $("#device1").text("ON");
+                    $("#device1").css("color","blue");
+                }
+                if(result.device1 === "off"){
+                    $("#device1").text("OFF");
+                    $("#device1").css("color","red");
+                }
+                if(result.device2 === "on"){ 
+                    $("#device2").text("ON");
+                    $("#device2").css("color","blue");
+                }
+                if(result.device2 === "off"){ 
+                    $("#device2").text("OFF");
+                    $("#device2").css("color","red");
+                }
+                if(result.device3 === "on"){ 
+                    $("#device3").text("OPEN");
+                    $("#device3").css("color","blue");
+                }
+                if(result.device3 === "off"){ 
+                    $("#device3").text("CLOSED");
+                    $("#device3").css("color","red");
+                }
+                if(result.device5 === "on"){
+                    $("#device5").text("ON");
+                    $("#device5").css("color","blue");
+                }
+                if(result.device5 === "off"){
+                    $("#device5").text("OFF");
+                    $("#device5").css("color","red");
+                }
+                setTimeout(function(){
+                    updateData()
+                }, 50);
+            }
+        });
+    }
+    updateData();
+</script>
+

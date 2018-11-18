@@ -1,0 +1,38 @@
+Removed Pin From Net: NetName=GND Pin=J1-1
+Removed Pin From Net: NetName=12V Pin=J1-2
+Removed Pin From Net: NetName=12V Pin=LM2596-1
+Removed Pin From Net: NetName=GND Pin=LM2596-2
+Removed Pin From Net: NetName=5V Pin=P9-1
+Removed Pin From Net: NetName=GND Pin=P9-2
+Removed Pin From Net: NetName=5V Pin=P9-3
+Removed Pin From Net: NetName=GND Pin=P9-4
+Removed Pin From Net: NetName=5V Pin=P9-5
+Removed Pin From Net: NetName=GND Pin=P9-6
+Removed Pin From Net: NetName=3V3 Pin=P10-1
+Removed Pin From Net: NetName=GND Pin=P10-2
+Removed Pin From Net: NetName=3V3 Pin=P10-3
+Removed Pin From Net: NetName=GND Pin=P10-4
+Removed Pin From Net: NetName=3V3 Pin=P10-5
+Removed Pin From Net: NetName=GND Pin=P10-6
+Removed Pin From Net: NetName=5V Pin=P20-1
+Removed Pin From Net: NetName=GND Pin=P20-2
+Removed Pin From Net: NetName=3V3 Pin=P21-1
+Removed Pin From Net: NetName=GND Pin=P21-2
+Removed Member From Class: ClassName=Master Member=J1
+Removed Member From Class: ClassName=Master Member=LM2596
+Removed Member From Class: ClassName=Master Member=P18
+Removed Member From Class: ClassName=Master Member=P19
+Removed Member From Class: ClassName=Master Member=P20
+Removed Member From Class: ClassName=Master Member=P21
+Change Component Designator: OldDesignator=P11 NewDesignator=P9
+Change Component Designator: OldDesignator=P12 NewDesignator=P10
+Change Component Designator: OldDesignator=P13 NewDesignator=P11
+Change Component Designator: OldDesignator=P14 NewDesignator=P12
+Change Component Designator: OldDesignator=P15 NewDesignator=P13
+Change Component Designator: OldDesignator=P16 NewDesignator=P14
+Change Component Designator: OldDesignator=P17 NewDesignator=P15
+Change Component Designator: OldDesignator=P18 NewDesignator=P16
+Change Component Designator: OldDesignator=P19 NewDesignator=P17
+Change Net Name : Old Net Name=NetP12_7 New Net Name=NetP10_7
+Change Net Name : Old Net Name=NetP12_8 New Net Name=NetP10_8
+Added Room: Name=Master

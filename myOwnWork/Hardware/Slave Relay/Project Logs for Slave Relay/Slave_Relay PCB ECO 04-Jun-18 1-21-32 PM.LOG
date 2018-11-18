@@ -1,0 +1,4 @@
+Change Component Designator: OldDesignator=P5 NewDesignator=P6
+Change Component Designator: OldDesignator=P6 NewDesignator=P7
+Change Component Designator: OldDesignator=P7 NewDesignator=P5
+Added Room: Name=Slave_Relay

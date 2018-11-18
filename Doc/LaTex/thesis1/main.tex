@@ -1,0 +1,63 @@
+\documentclass[13pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+% \fancyhead[LO,LE]{Chapter \thechapter}
+\fancyhead[LO,LE]{\leftmark}
+\fancyfoot{}
+\fancyfoot[CE,CO]{\thepage}
+\usepackage{indentfirst}
+
+
+\title{
+    {\huge Ho Chi Minh City University of Technology}\\
+    {\includegraphics[width=100mm, scale=0.7]{BK_logo.png}}\\
+    {\huge Smart Home}\\
+}
+\author{Student: Tuan-Hung VU\\ID: 1450231}
+\date{Day Month Year}
+
+
+\begin{document}
+%make title works
+\maketitle
+% Front matters
+\chapter*{Abstract}
+Abstract goes hereasdas
+
+\chapter*{Acknowledgements}
+I want to thank...
+ 
+\tableofcontents
+% \listoffigures
+% use below block to add "Figure" in front of aption in list of figures
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures%
+}
+% List of Tables
+\listoftables
+
+% Chapters
+\chapter{Introduction}
+\input{chapters/introduction}
+ 
+\chapter{Background}
+\input{chapters/chapter02}
+% \section{Test 2.1}
+% \input{chapters/sections/sections2.1}
+ 
+\chapter{Chapter Three Title}
+\input{chapters/chapter03}
+ 
+\chapter{Chapter Four Title}
+\input{chapters/chapter04}
+ 
+\chapter{Conclusion}
+\input{chapters/conclusion}
+\end{document}

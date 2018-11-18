@@ -1,0 +1,36 @@
+{
+  "name": "index.js",
+  "version": "1.0.0",
+  "description": "Webserver for smarthome",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "Hung Vu",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "axios": "^0.18.0",
+    "base64-img": "^1.0.4",
+    "body-parser": "^1.18.3",
+    "dat.gui": "^0.7.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "face-api.js": "^0.10.1",
+    "face-recognition": "^0.9.3",
+    "mocha": "^5.2.0",
+    "mongodb": "^2.2.33",
+    "mqtt": "^2.18.8",
+    "multer": "^1.3.1",
+    "node-fetch": "^1.7.3",
+    "opencv4nodejs": "^4.7.1",
+    "parser": "^0.1.4",
+    "path": "^0.12.7",
+    "pug": "^2.0.3",
+    "request": "^2.87.0",
+    "socket.io": "^2.1.1",
+    "virtual-keyboard": "^1.28.7"
+  },
+  "devDependencies": {}
+}

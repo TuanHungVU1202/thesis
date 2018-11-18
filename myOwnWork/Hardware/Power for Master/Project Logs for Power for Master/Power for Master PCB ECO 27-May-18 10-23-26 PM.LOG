@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=12V Pin=LM2596-1
+Removed Pin From Net: NetName=GND Pin=LM2596-2
+Removed Member From Class: ClassName=Power for Master Member=LM2596
+Added Room: Name=Power for Master

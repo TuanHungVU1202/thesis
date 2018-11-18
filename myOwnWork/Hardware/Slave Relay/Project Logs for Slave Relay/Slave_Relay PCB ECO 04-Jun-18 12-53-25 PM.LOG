@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=C2 Old Footprint=C-NP-0805 New Footprint=Cap Non-Pol 3mm
+Change Component Footprint: Designator=C3 Old Footprint=C-NP-0805 New Footprint=Cap Non-Pol 3mm
+Added Room: Name=Slave_Relay

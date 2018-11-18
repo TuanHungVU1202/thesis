@@ -1,0 +1,13 @@
+Change Component Footprint: Designator=R2 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R3 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R4 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R5 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R6 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R7 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R8 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R9 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R10 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R11 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R12 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Change Component Footprint: Designator=R13 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Added Room: Name=Slave_Relay

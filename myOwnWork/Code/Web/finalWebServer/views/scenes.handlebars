@@ -1,0 +1,156 @@
+<!-- /. NAV SIDE  -->
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a href="home"><i class="fa fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="control"><i class="fa fa-list-alt"></i> Control</a>
+            </li>
+            <li>
+                <a class="active-menu"><i class="fa fa-picture-o"></i> Scenes</a>
+            </li>
+            <li>
+                <a href="chart"><i class="fa fa-bar-chart-o"></i> Charts</a>
+            </li>
+            <li>
+                <a href="camera"><i class="fa fa-camera"></i> Outdoor Camera</a>
+            </li>
+            <li>
+                <a href="motion"><i class="fa fa-video-camera"></i> Indoor Camera</a>
+            </li>
+            <li>
+                <a href="chat"><i class="fa fa-edit"></i> Chat </a>
+            </li>
+            <li>
+                <a href="gps"><i class="fa fa-map-marker"></i> Member Tracker</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+
+
+<!-- /. PAGE WRAPPER  --> 
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <style>
+            div.box{
+                position: relative;
+                text-align: center;
+                width: 100px;
+                height: 60px;
+                margin: 20px auto 20px auto;
+            }
+            div.box .goodmorning {
+                display: block;
+                font-size: 26px;
+                width: 100px;
+                border: none;
+                background-color: white;
+                color: {{goodmorningColor}};
+            }
+            div.box .iAmHome {
+                display: block;
+                font-size: 26px;
+                width: 100px;
+                border: none;
+                background-color: white;
+                color: {{iAmHomeColor}};
+            }
+            div.box .goodnight {
+                display: block;
+                font-size: 26px;
+                width: 100px;
+                border: none;
+                background-color: white;
+                color: {{goodnightColor}};
+            }
+            div.box .security {
+                display: block;
+                font-size: 26px;
+                width: 100px;
+                border: none;
+                background-color: white;
+                color: {{securityColor}};
+            }
+            
+        </style>
+
+        <div class="col-xs-6 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <form action = "/goodmorning", method = "post">
+                        <div class="box">
+                            <button type="submit" class="goodmorning">Good Morning</button>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>    
+        
+        <div class="col-xs-6 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <form action = "/iamhome", method = "post">
+                        <div class="box">
+                            <button type="submit" class="iAmHome">I'm Home</button>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <form action = "/goodnight", method = "post">
+                        <div class="box">
+                            <button type="submit" class="goodnight">Good Night</button>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <form action = "/security", method = "post">
+                        <div class="box">
+                            <button type="submit" class="security">Security</button>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+
+    </div>    
+</div>
+
+<script>
+    // Connect to socket.io
+    var socket= io.connect('http://127.0.0.1:1202');
+    //callback for received data
+    socket.on('messageFromOutsider', function (data) {
+        if(data === "Visitor(s) waiting!") {
+            alert(data + "Click OK to view the visitors")
+            var url = "http://localhost:2111/camera";
+            $("<a>").attr("href", url).attr("target", "_blank")[0].click();
+        }
+    })
+
+    socket.on('messageFromMotion', function (data) {
+        if(data === "WARNING") {
+            alert(data + ". Strange motion detected")
+            var url = "http://localhost:2111/motion";
+            $("<a>").attr("href", url).attr("target", "_blank")[0].click();
+        }
+    })
+</script>
+
+
+	

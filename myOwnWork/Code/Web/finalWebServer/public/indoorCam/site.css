@@ -1,0 +1,29 @@
+.wrapper {
+	display: inline-block;
+	position: absolute;
+	width: 640px;
+	height: 480px;
+	background-color: #000;
+}
+
+img {
+	position: absolute;
+	right: 10px;
+	top: -160px;
+}
+
+video {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 640px;
+	height: 480px;
+	transform: scaleX(-1); /* flip video, like a mirror */
+}
+
+.motion-box {
+	display: none;
+	position: absolute;
+	border: 4px solid #fff;
+	transition: all .1s;
+}

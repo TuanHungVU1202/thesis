@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=C1 Old Footprint=C-NP-0805 New Footprint=Cap Non-Pol 3mm
+Change Component Footprint: Designator=C2 Old Footprint=C-NP-0805 New Footprint=Cap Non-Pol 3mm
+Change Component Footprint: Designator=R1 Old Footprint=DIEN TRO 0805 New Footprint=RESISTOR 1/4W
+Added Room: Name=Power for Slaves

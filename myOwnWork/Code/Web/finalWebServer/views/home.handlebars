@@ -1,0 +1,240 @@
+<!-- /. NAV SIDE  -->
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a class="active-menu"><i class="fa fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="control"><i class="fa fa-list-alt"></i> Control</a>
+            </li>
+            <li>
+                <a href="scenes"><i class="fa fa-picture-o"></i> Scenes</a>
+            </li>
+            <li>
+                <a href="chart"><i class="fa fa-bar-chart-o"></i> Charts</a>
+            </li>
+            <li>
+                <a href="camera"><i class="fa fa-camera"></i> Outdoor Camera</a>
+            </li>
+            <li>
+                <a href="motion"><i class="fa fa-video-camera"></i> Indoor Camera</a>
+            </li>
+            <li>
+                <a href="chat"><i class="fa fa-edit"></i> Chat </a>
+            </li>
+            <li>
+                <a href="gps"><i class="fa fa-map-marker"></i> Member Tracker</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+
+
+<!-- /. PAGE WRAPPER  --> 
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <style>
+        img.logo {
+            width:100px;
+            height:100px;
+        }
+        img.houseoverview{
+            float:left;
+            margin-left: 1cm;
+            margin-top: 1cm;
+            width:500px;
+            height:267px;
+        }
+        h1.titlesmarthome{
+            color: blue;
+            font-size: 350%;
+            margin-top: 1cm;
+            margin-left: 3.5cm;
+        }
+                div.box{
+            position: relative;
+	        text-align: center;
+	        width: 120px;
+	        height: 120px;
+	        margin: 20px auto 10px auto;
+        }
+        div.box .letterInsideGasdetectionBox {
+            display: block;
+            position: absolute;
+            font-size: 26px;
+            top: 38px;
+            width: 120px;
+            color: {{letterInsideGasdetectionBox}};
+        }
+        div.box .letterInsideHumandetectionBox {
+            display: block;
+            position: absolute;
+            font-size: 26px;
+            top: 38px;
+            width: 120px;
+            color: {{letterInsideHumandetectionBox}};
+        }
+        div.box .letterInsideSecurityBox {
+            display: block;
+            position: absolute;
+            font-size: 26px;
+            top: 38px;
+            width: 120px;
+            color: {{letterInsideSecurityBox}};
+        }
+        div.boxDistance{
+            margin-top: 2.0cm;
+        }
+        </style>
+
+        <div style = "float:left">
+            <img src="./img/logoBK.png" class ="logo">
+        </div>
+
+        <div>
+            <h1 class = "titlesmarthome">SMART HOME</h1>
+        </div>
+
+        <div class = "boxDistance">
+            <div class="col-xs-6 col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Temparature</h4>
+                        <div class="easypiechart" id="easypiechart-red" data-percent="{{insideTemperature}}" ><span class="percent">{{insideTemperature}} &#8451;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "boxDistance">
+            <div class="col-xs-6 col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Humidity</h4>
+                        <div class="easypiechart" id="easypiechart-blue" data-percent="{{insideHumidity}}" ><span class="percent">{{insideHumidity}} %</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "boxDistance">
+            <div class="col-xs-6 col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Gas</h4>
+                        <div class="box"><span class="letterInsideGasdetectionBox">{{gasDetection}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--
+        <div class = "boxDistance">
+            <div class="col-xs-6 col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Human</h4>
+                        <div class="box"><span class="letterInsideHumandetectionBox">{{humanDetection}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+        <div class = "boxDistance">
+            <div class="col-xs-6 col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Security Status</h4>
+                        <div class="box"><span class="letterInsideSecurityBox">{{securityStatus}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div class = "boxDistance">
+            <div class="col-xs-8 col-md-11">                     
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Live Power Consumption
+                    </div>
+                    <div class="panel-body">
+                        <div style="width:100%; height:100%">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+        
+        
+    </div>    
+</div>
+
+<script>
+    // Connect to socket.io
+    var socket= io.connect('http://127.0.0.1:1202');
+    //callback for received data
+    socket.on('messageFromOutsider', function (data) {
+        if(data === "Visitor(s) waiting!") {
+            alert(data + "Click OK to view the visitors")
+            var url = "http://localhost:2111/camera";
+            $("<a>").attr("href", url).attr("target", "_blank")[0].click();
+        }
+    })
+
+    socket.on('messageFromMotion', function (data) {
+        if(data === "WARNING") {
+            alert(data + ". Strange motion detected")
+            var url = "http://localhost:2111/motion";
+            $("<a>").attr("href", url).attr("target", "_blank")[0].click();
+        }
+    })
+
+
+    //var xdata = ['1:00','3:30','4:15','6:15','7:15','8:15'];
+    var xdata = [{{chartTime}}];
+    var ydata = [{{chartPower}}];
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xdata,
+            datasets: [{
+                label: 'Power',
+                data: ydata,
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor:'rgba(255, 159, 64, 1)',
+                borderWidth: 3,
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Time'
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true,
+                    },
+                    scaleLabel: {
+                            display: true,
+                            labelString: 'Power (W)'
+                    }
+                }],
+            }
+        }
+    });
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+

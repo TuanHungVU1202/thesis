@@ -1,0 +1,94 @@
+Added Component: Designator=C?(Cap Non-Pol 3mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100n"; VariantName = "[No Variations]"
+Added Component: Designator=C?(C-NP-0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "22p"; VariantName = "[No Variations]"
+Added Component: Designator=C?(C-NP-0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "22p"; VariantName = "[No Variations]"
+Added Component: Designator=IC?(DIP18/W0.3)
+Add component. Clean all parameters for all variants
+Added Component: Designator=P?(Header 5)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=R?(RESISTOR 1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Added Component: Designator=SW?(SW4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "Button chip 4 pin"; VariantName = "[No Variations]"
+Added Component: Designator=X?(XT2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "4Mhz"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=IC?-5
+Added Pin To Net: NetName=RXD Pin=IC?-7
+Added Pin To Net: NetName=TXD Pin=IC?-8
+Added Pin To Net: NetName=SEC Pin=IC?-9
+Added Pin To Net: NetName=VCC Pin=IC?-14
+Added Pin To Net: NetName=VCC Pin=P?-2
+Added Pin To Net: NetName=GND Pin=P?-3
+Added Pin To Net: NetName=VCC Pin=R?-2
+Added Pin To Net: NetName=GND Pin=SW?-1
+Added Pin To Net: NetName=GND Pin=SW?-3
+Added Pin To Net: NetName=MCLR Pin=C?-2
+Added Pin To Net: NetName=MCLR Pin=IC?-4
+Added Pin To Net: NetName=MCLR Pin=P?-1
+Added Pin To Net: NetName=MCLR Pin=R?-1
+Added Pin To Net: NetName=MCLR Pin=SW?-2
+Added Pin To Net: NetName=MCLR Pin=SW?-4
+Added Net: Name=MCLR
+Added Pin To Net: NetName=PGC Pin=IC?-12
+Added Pin To Net: NetName=PGC Pin=P?-5
+Added Net: Name=PGC
+Added Pin To Net: NetName=PGD Pin=IC?-13
+Added Pin To Net: NetName=PGD Pin=P?-4
+Added Net: Name=PGD
+Added Pin To Net: NetName=RELAY1 Pin=IC?-6
+Added Net: Name=RELAY1
+Added Pin To Net: NetName=RELAY2 Pin=IC?-10
+Added Net: Name=RELAY2
+Added Pin To Net: NetName=RELAY3 Pin=IC?-11
+Added Net: Name=RELAY3
+Added Pin To Net: NetName=XT1 Pin=C?-1
+Added Pin To Net: NetName=XT1 Pin=IC?-16
+Added Pin To Net: NetName=XT1 Pin=X?-2
+Added Net: Name=XT1
+Added Pin To Net: NetName=XT2 Pin=C?-1
+Added Pin To Net: NetName=XT2 Pin=IC?-15
+Added Pin To Net: NetName=XT2 Pin=X?-1
+Added Net: Name=XT2
+Added Member To Class: ClassName=Slave_Relay Member=Component C? Capacitor Ceramic
+Added Member To Class: ClassName=Slave_Relay Member=Component C? Cap Non-pol
+Added Member To Class: ClassName=Slave_Relay Member=Component C? Cap Non-pol
+Added Member To Class: ClassName=Slave_Relay Member=Component IC? PIC16F628A
+Added Member To Class: ClassName=Slave_Relay Member=Component P? Header 5
+Added Member To Class: ClassName=Slave_Relay Member=Component R? RES_SMD_0805
+Added Member To Class: ClassName=Slave_Relay Member=Component SW? SW7
+Added Member To Class: ClassName=Slave_Relay Member=Component X? 20Mhz
+Added Room: Name=Slave_Relay

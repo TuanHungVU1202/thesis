@@ -1,0 +1,205 @@
+<link rel="stylesheet" type="text/css" href="assets/css/outsider.css">
+<!-- /. NAV SIDE  -->
+<a class="navbar-brand" href="#"><i class="fa fa-home"></i> <strong>SMART HOME</strong></a>
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <a class="active-menu"><i class="fa fa-hand-o-right"></i> Welcome page</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- put this before page inner (body) to load every scripts before body -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+
+
+<!-- /. PAGE WRAPPER  -->
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <style>
+            video, canvas {
+                position: absolute;
+            }
+            #popup {
+                width:160px;
+                height:80px;
+                padding:20px;
+                background-color:transparent;
+                position:absolute;
+                left: 10cm;
+                top:100px;
+                display:none;
+            }
+        </style>
+        <h2> Welcome to our Home</h2>
+        <p> Please ring door bell by tapping the "Yellow bell" to connect with the house owner! </p>
+        <br>
+        <div>
+            <div class="ringBell"></div>
+            <!-- Handle Popup button "Enter One-time Password"-->
+            <button onclick="showPopUp()">Enter One-Time Password</button>
+            <div id="popup">
+                <div>Enter One-Time Password:</div>
+                <input id="oneTimePass" type="password" name="oneTimePass"/>
+                <button onclick="donePassWord()">Done</button>
+            </div>
+            <button id="closeDoorBtn">Close Door</button>
+        </div>
+    </div>
+</div>
+
+<!-- put this func after body to load it right after every content on page loaded -->
+<script>
+    var isPostCloseFlag = 0
+    var isPostOpenFlag = 0
+
+    globals = {};
+    function globalVar(){
+        globals['isOTP'] = '';
+    }
+
+
+    //init functions run at the beginning
+    globalVar()
+
+    // Connect to socket.io
+    var socket= io.connect('http://127.0.0.1:1202');
+
+
+    //handle clicking on bell icon
+    document.getElementsByClassName('ringBell')[0]
+            .addEventListener('click', function(event){
+                var data = "Visitor(s) waiting!"
+                socket.emit('getMessageFromOutsider', data)
+                console.log(data)
+            })
+
+
+    //receiving message from camera page
+    socket.on('randomPassword', function (randomPassword) {
+        globals.isOTP = randomPassword
+        alert('PASSWORD IS SHOWN ONLY ONCE.\nEnter the following password into One-Time Password field: ' + randomPassword)
+        console.log(globals.isOTP)
+        // console.log('random pass ', randomPassword)
+    })
+
+
+    // functions handle Doors
+    function openDoor(){
+        if(isPostOpenFlag === 0) {
+            $.ajax({
+                url: "/device3",
+                method: 'POST',
+                dataType: 'JSON',
+                success: handleOpen
+            })
+            isPostOpenFlag = 1
+        }
+    }
+
+
+    function closeDoor(){
+        if(isPostCloseFlag === 0) {
+            $.ajax({
+                url: "/device3",
+                method: 'POST',
+                dataType: 'JSON',
+                success: handleClose
+            })
+            isPostCloseFlag = 1
+        }
+    }
+
+    function handleOpen(result){
+        result.device3 = "on";
+    }
+
+    function handleClose(result){
+        result.device3 = "off";
+    }
+
+
+    //function handle password entered
+    function donePassWord() {
+        document.getElementById("popup").style.display = "none";
+        var checkOneTimePass = document.getElementById("oneTimePass").value;
+        if(checkOneTimePass ===  globals.isOTP){
+            openDoor()
+            $.post('/logDeviceActivities',
+                    {   'deviceId': 'F1.3',
+                        'logState': 'on',
+                        'Date': myTodayDate().myDate,
+                        'Day': myTodayDate().myDay,
+                        'Month': myTodayDate().myMonth,
+                        'Year': myTodayDate().year,
+                        'Time': getTime(),
+                    },
+            )
+            alert('Opening door.\nRemember to close door after entered')
+        }
+        //DO STUFF WITH PASSWORD HERE
+    }
+
+    function showPopUp() {
+        document.getElementById("popup").style.display = "block";
+    }
+
+
+    //handle closeDoorBtn event
+    $("#closeDoorBtn").click(function(){
+        closeDoor()
+        $.post('/logDeviceActivities',
+                {   'deviceId': 'F1.3',
+                    'logState': 'off',
+                    'Date': myTodayDate().myDate,
+                    'Day': myTodayDate().myDay,
+                    'Month': myTodayDate().myMonth,
+                    'Year': myTodayDate().year,
+                    'Time': getTime(),
+                },
+        )
+    })
+
+
+    //https://stackoverflow.com/questions/7357734/how-do-i-get-the-time-of-day-in-javascript-node-js
+    function getTime() {
+        var date = new Date();
+
+        var hour = date.getHours();
+        hour = (hour < 10 ? "0" : "") + hour;
+
+        var min  = date.getMinutes();
+        min = (min < 10 ? "0" : "") + min;
+
+        var sec  = date.getSeconds();
+        sec = (sec < 10 ? "0" : "") + sec;
+
+        // var year = date.getFullYear();
+        //
+        // var month = date.getMonth() + 1;
+        // month = (month < 10 ? "0" : "") + month;
+        //
+        // var day  = date.getDate();
+        // day = (day < 10 ? "0" : "") + day;
+
+        return hour + ":" + min + ":" + sec;
+    }
+
+
+    function myTodayDate(){
+        var today = new Date();
+        var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        var myTodayObj =
+                {
+                    myDate : today.getDate(),
+                    myDay : day[today.getDay()],
+                    myMonth : month[today.getMonth()],
+                    year : today.getFullYear()
+                }
+        return myTodayObj;
+    }
+</script>
+

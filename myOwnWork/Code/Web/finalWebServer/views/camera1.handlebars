@@ -1,0 +1,113 @@
+<!-- /. NAV SIDE  -->
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a href="home"><i class="fa fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="control"><i class="fa fa-list-alt"></i> Control</a>
+            </li>
+            <li>
+                <a href="scenes"><i class="fa fa-picture-o"></i> Scenes</a>
+            </li>
+            <li>
+                <a href="chart"><i class="fa fa-bar-chart-o"></i> Charts</a>
+            </li>
+            <li>
+                <a class="active-menu"><i class="fa fa-camera"></i> Camera</a>
+            </li>
+
+            <li>
+                <a href="gps"><i class="fa fa-table"></i> Members Tracker</a>
+            </li>
+            <li>
+                <a href="chat"><i class="fa fa-edit"></i> Chat </a>
+            </li>
+            <li>
+                <a href="form.html"><i class="fa fa-fw fa-file"></i> Empty Page</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- put this before page inner (body) to load every scripts before body -->
+<script src="camTracking/build/tracking-min.js"></script>
+<script src="camTracking/build/data/face-min.js"></script>
+<script src="camTracking/dat.gui/build/dat.gui.min.js"></script>
+<script src="camTracking/assets/stats.min.js"></script>
+
+<!-- /. PAGE WRAPPER  -->
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <style>
+            video, canvas {
+                margin-left: 230px;
+                margin-top: 120px;
+                position: absolute;
+            }
+
+        </style>
+        <h2> SECURITY CAMERA</h2>
+        <br>
+        <div class="container">
+            <video id="video" width="320" height="240" preload autoplay loop muted></video>
+            <canvas id="canvas" width="320" height="240"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- put this func after body to load it right after every content on page loaded -->
+<script>
+    window.onload = function() {
+        var video = document.getElementById('video');
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+        var tracker = new tracking.ObjectTracker('face');
+        tracker.setInitialScale(4);
+        tracker.setStepSize(2);
+        tracker.setEdgesDensity(0.1);
+
+        tracking.track("#video", tracker, { camera: true });
+
+        tracker.on('track', function(event) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            event.data.forEach(function(rect) {
+                context.strokeStyle = '#a64ceb';
+                context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                context.font = '11px Helvetica';
+                context.fillStyle = "blue";
+                context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+                context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+            });
+        });
+
+        var gui = new dat.GUI();
+        gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01);
+        gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1);
+        gui.add(tracker, 'stepSize', 1, 5).step(0.1);
+    };
+</script>
+            <!--<iframe id="localVideo" width="650" height="490" ></iframe>
+                <video id="localVideo" width="1280" height="720" autoplay></video>
+            -->
+
+
+
+
+<!-- Comment in this bracket
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="webRTC/js/common.js"></script>
+<script src="webRTC/js/videopipe.js"></script>
+<script src="webRTC/main.js"></script>
+<script src="webRTC/js/lib/ga.js"></script> //gg analytic<script>
+
+<script src="../camTracking/build/tracking-min.js"></script>
+<script src="../camTracking/build/data/face-min.js"></script>
+<script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
+<script src="../camTracking/assets/stats.min.js"></script>
+</script>
+--> 
