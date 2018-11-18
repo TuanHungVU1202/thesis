@@ -6,16 +6,33 @@
   \subsection{Theory}
   \gls{mcu} is a small size, special purpose computer. It is small enough in order to be integrated on a small circuit in which will do specified tasks or applications. MCU itself comes with memory, input, output peripherals and processor. Program to run the MCU is stored in \gls{rom} and usually not change in production. A microcontroller is usually designed to run in small size and at low cost, which is compatible to be embedded in other system in order to control actions of the system automatically.
 
+  Few advantages of \gls{mcu} over a microprocessors can be listed as following:
+  \begin{itemize}
+    \item A MCU is already a standalone microcomputer.
+    \item Because it can be considered as an independent computer, most needed components are integrated on a small size board.
+    \item The above reason leads to the benefit that using MCU can make the system compact, highly mobile and cost effciency.
+    \item Time reduction because it is programed to run specified set of commands only.
+    \item It is also easy to use and maintaince.
+    \item MCU nowadays usually designed to be used with low power in order to last longer under energy-limited condition.
+  \end{itemize}
+
   \subsection{Microcontroller structure}
-  The following figure demonstrates the basic structure of a microcontroller.
-  \begin{figure}[h!]
+  Figure~\ref{fig:mcuStructure} demonstrates the basic structure of a microcontroller. It is easily to see the basic design of a microcontroller and its components.
+  \begin{figure}[tbp]
     \includegraphics[scale=0.9]{images/Microcontroller-Structure.png}
     \caption{Structure of Microcontroller}
+    \label{fig:mcuStructure}
   \end{figure}
   
-  From the figure, the basic components usually come with the basic design of a microcontroller are listed as:
   \begin{itemize}
     \item CPU: is the central unit which is assemblied with \gls{alu} and a \gls{cu}. Its functions are connect parts of the MCU into a single system by doing fetch, decode and execution.
+    \item Memory: there are two types of Memory that are required, namely \gls{rom} and \gls{ram}. Each type has its own functions, in which ROM will handle the program and the written instructions and RAM can only store temporary data while the program is excuting.
+    \item Input/Output: the single board system needs input to excute the program as well as outputs to delivery the information for further handling. The I/O peripherals are the interface of the MCU to communicate with or to control other devices.
+    \item Bus: bus is the system of wires that used to connect the \gls{cpu} with other peripherals, which means it plays an important role but rarely discussed.
+    \item Timers/Counters: they are built-in components for microcontroller, which is used to count in order to handle external events.
+    \item Interrupts: is used to interrupt that can be an external or internal one, which helps to execute an instruction(s) while the main program is executing. 
+    \item ADC: \gls{adc}, its name says it all, which is a circuit use to convert analogs signal to digital signals. The reason to use ADC is most sensors available on the market can read only analog signal but CPU of the \gls{mcu} can read digital signal only, so a \gls{adc} is necessary for them to communicate.
+    \item DAC: \gls{dac} similar to \gls{adc}, DAC is also a circuit which convert digital signals into analog signals for further processing.
   \end{itemize}
 
 
@@ -34,6 +51,7 @@
     Stellaris (32-bit)
   \end{itemize}
 
+  \newpage
 \section{Communication protocol}
   
 
