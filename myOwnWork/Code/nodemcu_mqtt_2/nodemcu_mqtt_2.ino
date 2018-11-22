@@ -1,5 +1,5 @@
 #include <ESP8266WiFi.h>
-#include <ESP8266MQTTClient.h>
+#include <PubSubClient.h>
 
 /*
 const char* ssid     = "P811";
@@ -19,8 +19,8 @@ const char* host = "192.168.0.105";
 //setup mqtt client params
 const char* ssid     = "Erasmus";
 const char* password = "lifein5months";
-//const char* mqttServer = "192.168.0.104";
-//const int mqttPort = 3021;
+const char* mqttServer = "192.168.0.107";
+const int mqttPort = 3000;
 //const char* mqttUser = "YourMqttUser";
 //const char* mqttPassword = "YourMqttUserPassword";
 String topic_str;
@@ -36,7 +36,7 @@ String stateFromSystemToInternet;
 char oldstateFromSystemToInternet[18];
 char devicesState[18];
 char setTimeFromInternetToSystem[11];
-char tempDeviceTime[5],flagUpdateSetTime[11],device1TimeOn[5],device1TimeOff[5],device2TimeOn[5],device2TimeOff[5],device3TimeOn[5],device3TimeOff[5],device4TimeOn[5],device4TimeOff[5];
+char tempDeviceTime[5],flagUpdateSetTime[11],device1TimeOn[5],device1TimeOff[5],device2TimeOn[5],device2TimeOff[5],device3TimeOn[5],device3TimeOff[5],device4TimeOn[5],device4TimeOff[5],device5TimeOn[5],device5TimeOff[5];
  
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -72,6 +72,7 @@ void setup() {
   client.subscribe("toEsp/control/device/2");
   client.subscribe("toEsp/control/device/3");
   client.subscribe("toEsp/control/device/4");
+  client.subscribe("toEsp/control/device/5");
 
   //send Timer to System
   client.subscribe("toEsp/timer/device/1/on");
@@ -82,7 +83,8 @@ void setup() {
   client.subscribe("toEsp/timer/device/3/off");
   client.subscribe("toEsp/timer/device/4/on");
   client.subscribe("toEsp/timer/device/4/off");
-  
+  client.subscribe("toEsp/timer/device/5/on");
+  client.subscribe("toEsp/timer/device/5/off");
   //call function to config initial States
   configState();
   delay(500);
@@ -145,6 +147,8 @@ void configState(void){
     strcpy(device3TimeOff,device1TimeOn);
     strcpy(device4TimeOn,device1TimeOn);
     strcpy(device4TimeOff,device1TimeOn);
+    strcpy(device5TimeOn,device1TimeOn);
+    strcpy(device5TimeOff,device1TimeOn);
     
     setTimeFromInternetToSystem[0] = 'S';
     setTimeFromInternetToSystem[1] = '1';
@@ -205,6 +209,17 @@ void sendDataToSystem(void){
     } else {
       stateFromInternetToSystem[5]  = '0';
       //Serial.println("Turning Off D4");
+      Serial.println(stateFromInternetToSystem);
+     }
+  }
+  if(topic_str == "toEsp/control/device/5"){
+    if(message_str == "on"){
+      stateFromInternetToSystem[6]  = '1';
+      //Serial.println("Turning On D5");
+      Serial.println(stateFromInternetToSystem);
+    } else {
+      stateFromInternetToSystem[6]  = '0';
+      //Serial.println("Turning Off D5");
       Serial.println(stateFromInternetToSystem);
      }
   }
@@ -303,6 +318,28 @@ void sendTimeToSystem(void){
       Serial.println(setTimeFromInternetToSystem);
       delay(50);
     }
+
+  if(topic_str == "toEsp/timer/device/5/on"){
+      setTimeFromInternetToSystem[4]='5';
+      setTimeFromInternetToSystem[5]=message_str[0];
+      setTimeFromInternetToSystem[6]=message_str[1];
+      setTimeFromInternetToSystem[7]=message_str[3];
+      setTimeFromInternetToSystem[8]=message_str[4];
+      setTimeFromInternetToSystem[9]='1';
+      Serial.println(setTimeFromInternetToSystem);
+      delay(50);
+    }
+
+  if(topic_str == "toEsp/timer/device/5/off"){
+      setTimeFromInternetToSystem[4]='5';
+      setTimeFromInternetToSystem[5]=message_str[0];
+      setTimeFromInternetToSystem[6]=message_str[1];
+      setTimeFromInternetToSystem[7]=message_str[3];
+      setTimeFromInternetToSystem[8]=message_str[4];
+      setTimeFromInternetToSystem[9]='0';
+      Serial.println(setTimeFromInternetToSystem);
+      delay(50);
+    }
 }
 //--------------------------------------------------------------------------------------------------------------------
 
@@ -353,6 +390,16 @@ void processDataFromSystem(void){
           stateFromInternetToSystem[5] = stateFromSystemToInternet[5];
           client.publish("fromEsp/control/device/4", "off");
           //sendDataToInternet("device4","off");
+       }
+       if(stateFromSystemToInternet[6] == '1' && stateFromSystemToInternet[6] != stateFromInternetToSystem[6]){
+          stateFromInternetToSystem[6] = stateFromSystemToInternet[6];
+          client.publish("fromEsp/control/device/5", "on");
+          //sendDataToInternet("device5","on");
+       }
+       if(stateFromSystemToInternet[6] == '0' && stateFromSystemToInternet[6] != stateFromInternetToSystem[6]){
+          stateFromInternetToSystem[6] = stateFromSystemToInternet[6];
+          client.publish("fromEsp/control/device/5", "off");
+          //sendDataToInternet("device5","off");
        }
     }
     /*

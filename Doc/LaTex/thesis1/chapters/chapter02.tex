@@ -6,28 +6,28 @@
   \subsection{Theory}
   \gls{mcu} is a small size, special purpose computer. It is small enough in order to be integrated on a small circuit in which will do specified tasks or applications. MCU itself comes with memory, input, output peripherals and processor. Program to run the MCU is stored in \gls{rom} and usually not change in production. A microcontroller is usually designed to run in small size and at low cost, which is compatible to be embedded in other system in order to control actions of the system automatically.
 
-  Few advantages of \gls{mcu} over a microprocessors can be listed as following:
+  Few advantages of \gls{mcu} over a microprocessor can be listed as following:
   \begin{itemize}
     \item A MCU is already a standalone microcomputer.
     \item Because it can be considered as an independent computer, most needed components are integrated on a small size board.
-    \item The above reason leads to the benefit that using MCU can make the system compact, highly mobile and cost effciency.
+    \item The above reason leads to the benefit that using MCU can make the system compact, highly mobile and cost efficiency.
     \item Time reduction because it is programed to run specified set of commands only.
-    \item It is also easy to use and maintaince.
+    \item It is also easy to use and maintain.
     \item MCU nowadays usually designed to be used with low power in order to last longer under energy-limited condition.
   \end{itemize}
 
   \subsection{Microcontroller structure}
   Figure~\ref{fig:mcuStructure} demonstrates the basic structure of a microcontroller. It is easily to see the basic design of a microcontroller and its components.
-  \begin{figure}[tbp]
+  \begin{figure}[!ht]
     \includegraphics[scale=0.9]{images/Microcontroller-Structure.png}
     \caption{Structure of Microcontroller}
     \label{fig:mcuStructure}
   \end{figure}
   
   \begin{itemize}
-    \item CPU: is the central unit which is assemblied with \gls{alu} and a \gls{cu}. Its functions are connect parts of the MCU into a single system by doing fetch, decode and execution.
-    \item Memory: there are two types of Memory that are required, namely \gls{rom} and \gls{ram}. Each type has its own functions, in which ROM will handle the program and the written instructions and RAM can only store temporary data while the program is excuting.
-    \item Input/Output: the single board system needs input to excute the program as well as outputs to delivery the information for further handling. The I/O peripherals are the interface of the MCU to communicate with or to control other devices.
+    \item CPU: is the central unit which is assembled with \gls{alu} and a \gls{cu}. Its functions are connect parts of the MCU into a single system by doing fetch, decode and execution.
+    \item Memory: there are two types of Memory that are required, namely \gls{rom} and \gls{ram}. Each type has its own functions, in which ROM will handle the program and the written instructions and RAM can only store temporary data while the program is executing.
+    \item Input/Output: the single board system needs input to execute the program as well as outputs to delivery the information for further handling. The I/O peripherals are the interface of the MCU to communicate with or to control other devices.
     \item Bus: bus is the system of wires that used to connect the \gls{cpu} with other peripherals, which means it plays an important role but rarely discussed.
     \item Timers/Counters: they are built-in components for microcontroller, which is used to count in order to handle external events.
     \item Interrupts: is used to interrupt that can be an external or internal one, which helps to execute an instruction(s) while the main program is executing. 
@@ -37,7 +37,7 @@
 
 
   \subsection{Microcontroller market}
-  There exists many microcontrollers on the market which come in various sizes and capacities. The list is only contains very few popular MCU that the author knows of.
+  There exists many microcontrollers on the market which come in various sizes and capacities. The list is only containing very few popular MCU that the author knows of.
   \begin{itemize}
     \item Intel 8051
     \item STMicroelectronics STM8S (8-bit), ST10 (16-bit) and STM32 (32-bit)
@@ -51,7 +51,14 @@
     Stellaris (32-bit)
   \end{itemize}
 
-  \newpage
-\section{Communication protocol}
+\section{Communication}
+  \subsection{Introduction}
+  Nowadays, there are various communication protocols can be used for the thesis, namely I2C, ISP, RS232, RS485, Bluetooth or Wi-Fi. Each protocol is designed to be suitable for specified purpose with different advantages or disadvantages, which means a perfect protocol does not exist. When making a decision to choose suitable protocols for the thesis, the trade-off between the stabilization and the speed of the communication protocol has been considered carefully.
+
+  In this thesis, RS485 is chosen as the main way for components in the system to communicate with each other. RS485 is defined in 1983 not as a protocol but an electrical interface standard and only specifies the drivers and receivers’ characteristics. It is developed in order to make data rate and transmitting distance are inversely proportional. For instance, the data transmitting speed can reach 10 Mbps within distance of 16 meters or if the distance is extended to 1220 meters, the data rate is lower to 100 kbps. The advantage of RS485 over RS232, which is developed in 1960, is multiple nodes (up to 32) can be parallel connected to a bus. Additionally, the network can be extended in length and number of nodes easily by using simple connector. Besides, Wi-Fi, Bluetooth, GSM and MQTT are also implemented in the thesis in order to take the advantages in different circumstances.
   
+  \subsection{RS485 specifications}
+
+  
+
 

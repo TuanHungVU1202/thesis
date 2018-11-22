@@ -17,9 +17,9 @@ const char* host = "192.168.0.105";
 */
 
 //setup mqtt client params
-const char* ssid     = "Erasmus_s7";
+const char* ssid     = "Erasmus";
 const char* password = "lifein5months";
-const char* mqttServer = "hung-laptop";
+const char* mqttServer = "192.168.0.107";
 const int mqttPort = 3000;
 //const char* mqttUser = "YourMqttUser";
 //const char* mqttPassword = "YourMqttUserPassword";
@@ -398,7 +398,7 @@ void processDataFromSystem(void){
        }
        if(stateFromSystemToInternet[6] == '0' && stateFromSystemToInternet[6] != stateFromInternetToSystem[6]){
           stateFromInternetToSystem[6] = stateFromSystemToInternet[6];
-          client.publish("fromEsp/control/device/6", "off");
+          client.publish("fromEsp/control/device/5", "off");
           //sendDataToInternet("device5","off");
        }
     }

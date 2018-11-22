@@ -6,8 +6,8 @@ int busy = 0;
 char flagReceivedAllData = 0;
 char count = 0, tempReceiveData,receiveData[11];
 char sendData[11];
-char addressButton1[2], addressButton2[2], addressButton3[2];
-char addressDevice1[2], addressDevice2[2], addressDevice3[2];
+char addressButton1[2], addressButton2[2];
+char addressDevice1[2], addressDevice2[2];
 void RS485_send (char dat[]);
 void checkstt (int stt);
 
@@ -67,17 +67,12 @@ void main() {
  addressButton2[1] = '5';
  addressDevice2[0] = '0';
  addressDevice2[1] = '5';
-
- addressButton3[0] = '0';
- addressButton3[1] = '6';
- addressDevice3[0] = '0';
- addressDevice3[1] = '6';
-#line 115 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 111 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
  Delay_ms(100);
-#line 133 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 129 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
  while(1)
  {
-#line 186 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 182 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
  if (Button(&PORTB, 0, 1, 1)) {
  oldstate = 1;
  }
@@ -85,7 +80,7 @@ void main() {
  Delay_ms(100);
  if (oldstate && Button(&PORTB, 0, 1, 0))
  {
-#line 197 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 193 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
  sendData[0] = 'S';
  sendData[1] = '0';
  sendData[2] = '0';
@@ -127,11 +122,11 @@ void main() {
  sendData[1] = '0';
  sendData[2] = '0';
  sendData[3] = 'B';
-#line 242 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 238 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
  sendData[4] = '0';
  sendData[5] = '5';
  sendData[6] = 'D';
-#line 249 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 245 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
  sendData[7] = '0';
  sendData[8] = '5';
  sendData[9] = '0';
@@ -149,43 +144,6 @@ void main() {
  Delay_ms(500);
  }
  }
-
-
- if (Button(&PORTB, 5, 1, 1)) {
- oldstate = 1;
- }
-
- if (oldstate && Button(&PORTB, 5, 1, 0)) {
- Delay_ms(100);
- if (oldstate && Button(&PORTB, 5, 1, 0))
- {
- sendData[0] = 'S';
- sendData[1] = '0';
- sendData[2] = '0';
- sendData[3] = 'B';
-#line 284 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
- sendData[4] = '0';
- sendData[5] = '6';
- sendData[6] = 'D';
-#line 291 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
- sendData[7] = '0';
- sendData[8] = '6';
- sendData[9] = '0';
- sendData[10] = 'E';
- checkstt(stt3);
- stt3++;
- while(busy == 1){
- ;
- }
- Delay_ms(10);
- RS485_send(sendData);
- Delay_ms(100);
-
- oldstate = 0;
- Delay_ms(500);
- }
- }
-
  }
 }
 
@@ -202,7 +160,7 @@ void RS485_send (char dat[])
  Delay_ms(100);
  PORTB.RB3 =0;
 }
-#line 332 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 285 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
 void checkstt (int stt)
 {
  if (stt % 2 == 0)

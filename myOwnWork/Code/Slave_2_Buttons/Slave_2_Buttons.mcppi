@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=Slave_CA3.c
+Value=Slave_2_Buttons.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
