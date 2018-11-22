@@ -55,9 +55,18 @@
   \subsection{Introduction}
   Nowadays, there are various communication protocols can be used for the thesis, namely I2C, ISP, RS232, RS485, Bluetooth or Wi-Fi. Each protocol is designed to be suitable for specified purpose with different advantages or disadvantages, which means a perfect protocol does not exist. When making a decision to choose suitable protocols for the thesis, the trade-off between the stabilization and the speed of the communication protocol has been considered carefully.
 
-  In this thesis, RS485 is chosen as the main way for components in the system to communicate with each other. RS485 is defined in 1983 not as a protocol but an electrical interface standard and only specifies the drivers and receivers’ characteristics. It is developed in order to make data rate and transmitting distance are inversely proportional. For instance, the data transmitting speed can reach 10 Mbps within distance of 16 meters or if the distance is extended to 1220 meters, the data rate is lower to 100 kbps. The advantage of RS485 over RS232, which is developed in 1960, is multiple nodes (up to 32) can be parallel connected to a bus. Additionally, the network can be extended in length and number of nodes easily by using simple connector. Besides, Wi-Fi, Bluetooth, GSM and MQTT are also implemented in the thesis in order to take the advantages in different circumstances.
+  In this thesis, RS485 is chosen as the main way for components in the system to communicate with each other. RS485 is defined in 1983 not as a protocol but an electrical interface standard and only specifies the drivers and receivers’ characteristics. It is developed in order to make data rate and transmitting distance are inversely proportional. For instance, the data transmitting speed can reach 10 Mbps within distance of 16 meters or if the distance is extended to 1220 meters, the data rate is lower to 100 kbps. The advantage of RS485 over RS232, which is developed in 1960, is multiple nodes can be parallel connected to a bus. Additionally, the network can be extended in length and number of nodes easily by using simple connectors. Besides, Wi-Fi, Bluetooth, GSM and MQTT are also implemented in the thesis in order to take the advantages of different communication protocols in different circumstances. 
   
   \subsection{RS485 specifications}
+  %rs485 highlight specs table
+  Table shows the highlight specifications of RS485. With these specifications, RS485 was a robust interface standard and was able to meet the requirements in industries, in which implemented applications that need stable, fast and reliable connection. Figure~\ref{fig:fullHalfDuplex} demonstrates two ways to implement the connection with RS485, which are full-duplex and half-duplex. Full-duplex implementations require four-wire (two signal pairs) instead of two-wire in half-duplex implementations; But despite the downside of two-wire implementation is it is limited to half-duplex and needs attention to turn-around delay, in practical applications, half-duplex is most chosen. The reason is full-duplex solution depends on master-slave model, which means the slaves cannot communicate with each other. In modern designs of transceiver, the allowed number of nodes can connect to the bus is up to hundreds.
+    %full-duplex, half-duplex implementation figure
+    \begin{figure}[!ht]
+      \includegraphics[scale=0.85]{images/rs485-fullduplex-halfduplex.jpg}
+      \caption{Half-duplex(upper) and Full-duplex(below) implementations}
+      \label{fig:fullHalfDuplex}
+    \end{figure}
+
 
   
 
