@@ -59,6 +59,22 @@
   
   \subsection{RS485 specifications}
   %rs485 highlight specs table
+  \begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+    \hline
+    \multicolumn{4}{|c|}{Country List} \\
+    \hline
+    Country Name     or Area Name& ISO ALPHA 2 Code &ISO ALPHA 3 Code&ISO numeric Code\\
+    \hline
+    Afghanistan   & AF    &AFG&   004\\
+    Aland Islands&   AX  & ALA   &248\\
+    Albania &AL & ALB&  008\\
+    Algeria    &DZ & DZA&  012\\
+    American Samoa&   AS  & ASM&016\\
+    Andorra& AD  & AND   &020\\
+    Angola& AO  & AGO&024\\
+    \hline
+   \end{tabular}
+   
   Table shows the highlight specifications of RS485. With these specifications, RS485 was a robust interface standard and was able to meet the requirements in industries, in which implemented applications that need stable, fast and reliable connection. Figure~\ref{fig:fullHalfDuplex} demonstrates two ways to implement the connection with RS485, which are full-duplex and half-duplex. Full-duplex implementations require four-wire (two signal pairs) instead of two-wire in half-duplex implementations; But despite the downside of two-wire implementation is it is limited to half-duplex and needs attention to turn-around delay, in practical applications, half-duplex is most chosen. The reason is full-duplex solution depends on master-slave model, which means the slaves cannot communicate with each other. In modern designs of transceiver, the allowed number of nodes can connect to the bus is up to hundreds.
     %full-duplex, half-duplex implementation figure
     \begin{figure}[!ht]

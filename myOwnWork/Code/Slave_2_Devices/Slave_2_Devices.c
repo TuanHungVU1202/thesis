@@ -24,7 +24,8 @@ int stt1 =1, stt2 =1,stt3 = 1;
 char flagReceivedAllData = 0;
 char count = 0, tempReceiveData,receiveData[11];
 char sendData[11];
-char addressDevice1[2], addressDevice2[2], addressDevice3[2];
+char addressDevice1[2], addressDevice2[2];
+//char addressDevice3[2];
 void RS485_send (char dat[]);                                     //send data type char to send byte of transmitting frame
 
 
@@ -60,7 +61,7 @@ void interrupt()
 void main() {
   TRISB.B0 =0;                         //RB0 is output, shall become input if TRISB.B0=1
   TRISB.B4 =0;
-  TRISB.B5 =0;
+//  TRISB.B5 =0;
 
   TRISB.B3 =0;                         //Bit RS485, output
 
@@ -78,8 +79,8 @@ void main() {
   addressDevice1[1] = '4';             //device ID 1: 1
   addressDevice2[0] = '0';
   addressDevice2[1] = '5';
-  addressDevice3[0] = '0';
-  addressDevice3[1] = '6';
+//  addressDevice3[0] = '0';
+//  addressDevice3[1] = '6';
   /*
   addressDevice1[0] = EEPROM_Read(0x04);
   addressDevice1[1] = EEPROM_Read(0x05);
@@ -111,11 +112,11 @@ void main() {
   Delay_ms(1000);
   PORTB.RB0 =1;                       //trigger Relay1 on, LED on
   PORTB.RB4 =1;
-  PORTB.RB5 =1;
+//  PORTB.RB5 =1;
   Delay_ms(500);
   PORTB.RB0 =0;                       //trigger Relay1 off, LED off
   PORTB.RB4 =0;
-  PORTB.RB5 =0;
+//  PORTB.RB5 =0;
   while(1)
   {
 
@@ -164,6 +165,7 @@ void main() {
                      PORTB.RB4 =0;
                  }
              }
+             /*
              if(receiveData[4] == addressDevice3[0] && receiveData[5] == addressDevice3[1]){
                  if(receiveData[9] == '1'){
                      PORTB.RB5 =1;
@@ -172,6 +174,7 @@ void main() {
                      PORTB.RB5 =0;
                  }
              }
+             */
          }
      }
 

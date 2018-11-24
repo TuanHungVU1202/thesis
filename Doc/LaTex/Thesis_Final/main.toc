@@ -1,7 +1,6 @@
 \contentsline {chapter}{Contents}{iii}
 \contentsline {chapter}{List of Figures}{iv}
 \contentsline {chapter}{List of Tables}{v}
-\contentsline {chapter}{Acronym and Abbreviation}{vi}
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {chapter}{\numberline {2}Background}{2}
 \contentsline {section}{\numberline {2.1}Microcontroller}{2}
@@ -11,6 +10,6 @@
 \contentsline {section}{\numberline {2.2}Communication}{4}
 \contentsline {subsection}{\numberline {2.2.1}Introduction}{4}
 \contentsline {subsection}{\numberline {2.2.2}RS485 specifications}{5}
-\contentsline {chapter}{\numberline {3}Chapter Three Title}{6}
-\contentsline {chapter}{\numberline {4}Chapter Four Title}{7}
-\contentsline {chapter}{\numberline {5}Conclusion}{8}
+\contentsline {chapter}{\numberline {3}Chapter Three Title}{7}
+\contentsline {chapter}{\numberline {4}Chapter Four Title}{8}
+\contentsline {chapter}{\numberline {5}Conclusion}{9}

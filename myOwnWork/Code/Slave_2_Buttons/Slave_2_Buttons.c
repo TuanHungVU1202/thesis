@@ -19,7 +19,8 @@ VD: Slave 3 nut xin cap dia chi: S02 00 00 3 1E
     S 12 03 08 3 1E
 */
 bit oldstate;                                                    //Old state flag
-int stt1 =1, stt2 =1,stt3 = 1;                                   //later pass sttX into function checkstt(sttX)
+int stt1 =1, stt2 =1;
+//int stt3 = 1;                                   //later pass sttX into function checkstt(sttX)
 int busy = 0;
 char flagReceivedAllData = 0;
 char count = 0, tempReceiveData,receiveData[11];
@@ -63,7 +64,7 @@ void interrupt()
 void main() {
   TRISB.B0 =1;                         //bit Button 1, input. Shall become output if value = 0
   TRISB.B4 =1;                         //bit Button 2, input
-  TRISB.B5 =1;                         //bit Button 3, intput
+//  TRISB.B5 =1;                         //bit Button 3, intput
 
   TRISB.B3 =0;                         //Bit RS485, output
 
@@ -183,7 +184,7 @@ id of Button 1 and Device 1 comes together to control D01 with B01
       oldstate = 1;                              // Update flag
     }
     if (oldstate && Button(&PORTB, 0, 1, 0)) {   // Detect one-to-zero transition (oldstate=1) from previous if
-      Delay_ms(100);                             // oldstate=1 && portB turns to 0
+      Delay_ms(20);                             // oldstate=1 && portB turns to 0
       if (oldstate && Button(&PORTB, 0, 1, 0))   // => OFF device using below frame
       {
       /*
@@ -224,7 +225,7 @@ id of Button 1 and Device 1 comes together to control D01 with B01
       oldstate = 1;                              // Update flag
     }
     if (oldstate && Button(&PORTB, 4, 1, 0)) {   // Detect one-to-zero transition => OFF device using below frame
-      Delay_ms(100);
+      Delay_ms(20);
       if (oldstate && Button(&PORTB, 4, 1, 0))
       {
          sendData[0] = 'S';
