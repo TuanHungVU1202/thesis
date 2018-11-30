@@ -75,9 +75,9 @@ void main() {
 
 //Set fixed ID because setting ID configuration is not stable YET
   addressDevice1[0] = '0';             //device ID 1: 0
-  addressDevice1[1] = '1';             //device ID 1: 1
+  addressDevice1[1] = '6';             //device ID 1: 1
   addressDevice2[0] = '0';
-  addressDevice2[1] = '2';
+  addressDevice2[1] = '7';
   addressDevice3[0] = '0';
   addressDevice3[1] = '3';
   /*

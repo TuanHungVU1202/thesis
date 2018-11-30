@@ -1,8 +1,7 @@
-#line 1 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
-#line 21 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 1 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
+#line 21 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
 bit oldstate;
-int stt1 =1, stt2 =1;
-
+int stt1 =1, stt2 =1,stt3 = 1;
 int busy = 0;
 char flagReceivedAllData = 0;
 char count = 0, tempReceiveData,receiveData[11];
@@ -46,7 +45,7 @@ void interrupt()
 void main() {
  TRISB.B0 =1;
  TRISB.B4 =1;
-
+ TRISB.B5 =1;
 
  TRISB.B3 =0;
 
@@ -58,41 +57,41 @@ void main() {
  TXIE_bit = 0;
  PEIE_bit = 1;
  GIE_bit = 1;
-#line 84 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 83 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
  addressButton1[0] = '0';
- addressButton1[1] = '4';
+ addressButton1[1] = '6';
  addressDevice1[0] = '0';
- addressDevice1[1] = '4';
+ addressDevice1[1] = '6';
 
  addressButton2[0] = '0';
- addressButton2[1] = '5';
+ addressButton2[1] = '7';
  addressDevice2[0] = '0';
- addressDevice2[1] = '5';
-#line 112 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+ addressDevice2[1] = '7';
+#line 111 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
  Delay_ms(100);
-#line 130 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 129 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
  while(1)
  {
-#line 183 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 182 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
  if (Button(&PORTB, 0, 1, 1)) {
  oldstate = 1;
  }
  if (oldstate && Button(&PORTB, 0, 1, 0)) {
- Delay_ms(20);
+ Delay_ms(100);
  if (oldstate && Button(&PORTB, 0, 1, 0))
  {
-#line 194 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 193 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
  sendData[0] = 'S';
  sendData[1] = '0';
  sendData[2] = '0';
  sendData[3] = 'B';
  sendData[4] = '0';
- sendData[5] = '4';
+ sendData[5] = '6';
 
 
  sendData[6] = 'D';
  sendData[7] = '0';
- sendData[8] = '4';
+ sendData[8] = '6';
 
 
  sendData[9] = '0';
@@ -116,20 +115,20 @@ void main() {
  oldstate = 1;
  }
  if (oldstate && Button(&PORTB, 4, 1, 0)) {
- Delay_ms(20);
+ Delay_ms(100);
  if (oldstate && Button(&PORTB, 4, 1, 0))
  {
  sendData[0] = 'S';
  sendData[1] = '0';
  sendData[2] = '0';
  sendData[3] = 'B';
-#line 239 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 238 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
  sendData[4] = '0';
- sendData[5] = '5';
+ sendData[5] = '7';
  sendData[6] = 'D';
-#line 246 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 245 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
  sendData[7] = '0';
- sendData[8] = '5';
+ sendData[8] = '7';
  sendData[9] = '0';
  sendData[10] = 'E';
  checkstt(stt2);
@@ -161,7 +160,7 @@ void RS485_send (char dat[])
  Delay_ms(100);
  PORTB.RB3 =0;
 }
-#line 286 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_2_Buttons.c"
+#line 285 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Buttons/Slave_CA3.c"
 void checkstt (int stt)
 {
  if (stt % 2 == 0)

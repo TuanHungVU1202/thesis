@@ -62,9 +62,8 @@ acos
 add_32x32_fp
 adden
 adden_bit
+addressbutton1
 addressdevice1
-addressdevice2
-addressdevice3
 aden
 aden_bit
 asin
@@ -86,6 +85,7 @@ bcd2dec16
 boot16_delay_5ms
 brgh
 brgh_bit
+busy
 button
 byte2double
 bytetohex
@@ -133,6 +133,7 @@ cf_write_byte
 cf_write_init
 cf_write_sector
 character8x7
+checkstt
 cis
 cis_bit
 cm0
@@ -587,7 +588,6 @@ strstr
 strtok
 stt1
 stt2
-stt3
 sub_32x32_fp
 swap
 sync

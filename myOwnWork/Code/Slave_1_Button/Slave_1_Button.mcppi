@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=Slave_CA3.c
+Value=Slave_1_Button.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -17,7 +17,7 @@ Value=0
 Value=
 [FILES]
 Count=1
-File0=Slave_CA3.c
+File0=Slave_1_Button.c
 [BINARIES]
 Count=0
 [IMAGES]
@@ -25,7 +25,7 @@ Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
 Count=1
-File0=Slave_CA3.c
+File0=Slave_1_Button.c
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
@@ -36,7 +36,7 @@ Count=0
 Count=4
 Path0=C:\Program Files\mikroC PRO for PIC\Defs\
 Path1=C:\Program Files\mikroC PRO for PIC\Uses\P16\
-Path2=C:\Users\HP\Google Drive (1450231@hcmut.edu.vn)\BK\Thesis\myOwnWork\Code\Slave_2_Buttons\
+Path2=C:\Users\HP\Google Drive (1450231@hcmut.edu.vn)\BK\Thesis\myOwnWork\Code\Slave_1_Button\
 Path3=C:\Program Files\mikroC PRO for PIC\Packages\
 [HEADER_PATH]
 Count=0

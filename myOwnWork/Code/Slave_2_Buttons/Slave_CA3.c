@@ -24,8 +24,8 @@ int busy = 0;
 char flagReceivedAllData = 0;
 char count = 0, tempReceiveData,receiveData[11];
 char sendData[11];
-char addressButton1[2], addressButton2[2], addressButton3[2];
-char addressDevice1[2], addressDevice2[2], addressDevice3[2];
+char addressButton1[2], addressButton2[2];
+char addressDevice1[2], addressDevice2[2];
 void RS485_send (char dat[]);                                    //later pass sendData[] to char dat[]
 void checkstt (int stt);
 
@@ -81,19 +81,15 @@ Set fixed ID because setting ID configuration is not stable YET
 id of Button 1 and Device 1 comes together to control D01 with B01
 */
   addressButton1[0] = '0';             //ID Button 1: 0
-  addressButton1[1] = '1';             //ID Button 1: 1
+  addressButton1[1] = '6';             //ID Button 1: 1
   addressDevice1[0] = '0';             //ID Device 1: 0
-  addressDevice1[1] = '1';             //ID Device 1: 1
+  addressDevice1[1] = '6';             //ID Device 1: 1
 
   addressButton2[0] = '0';
-  addressButton2[1] = '2';
+  addressButton2[1] = '7';
   addressDevice2[0] = '0';
-  addressDevice2[1] = '2';
+  addressDevice2[1] = '7';
 
-  addressButton3[0] = '0';
-  addressButton3[1] = '3';
-  addressDevice3[0] = '0';
-  addressDevice3[1] = '3';
   /*
   addressButton1[0] = EEPROM_Read(0x02);
   addressButton1[1] = EEPROM_Read(0x03);
@@ -199,12 +195,12 @@ id of Button 1 and Device 1 comes together to control D01 with B01
          sendData[2] = '0';
          sendData[3] = 'B';
          sendData[4] = '0';
-         sendData[5] = '1';
+         sendData[5] = '6';
          //sendData[4] = addressButton1[0];
          //sendData[5] = addressButton1[1];
          sendData[6] = 'D';
          sendData[7] = '0';
-         sendData[8] = '1';
+         sendData[8] = '6';
          //sendData[7] = addressDevice1[0];
          //sendData[8] = addressDevice1[1];
          sendData[9] = '0';                          //bit turn OFF
@@ -240,14 +236,14 @@ id of Button 1 and Device 1 comes together to control D01 with B01
          sendData[5] = addressButton2[1];
          */
          sendData[4] = '0';
-         sendData[5] = '2';
+         sendData[5] = '7';
          sendData[6] = 'D';
          /*
          sendData[7] = addressDevice2[0];
          sendData[8] = addressDevice2[1];
          */
          sendData[7] = '0';
-         sendData[8] = '2';
+         sendData[8] = '7';
          sendData[9] = '0';
          sendData[10] = 'E';
          checkstt(stt2);
@@ -263,49 +259,6 @@ id of Button 1 and Device 1 comes together to control D01 with B01
          Delay_ms(500);
       }
     }
-
-
-    if (Button(&PORTB, 5, 1, 1)) {               // Detect logical one => ON device
-      oldstate = 1;                              // Update flag
-    }
-
-    if (oldstate && Button(&PORTB, 5, 1, 0)) {   // Detect one-to-zero transition => OFF device using below frame
-      Delay_ms(100);
-      if (oldstate && Button(&PORTB, 5, 1, 0))
-      {
-         sendData[0] = 'S';
-         sendData[1] = '0';
-         sendData[2] = '0';
-         sendData[3] = 'B';
-         /*
-         sendData[4] = addressButton3[0];
-         sendData[5] = addressButton3[1];
-         */
-         sendData[4] = '0';
-         sendData[5] = '3';
-         sendData[6] = 'D';
-         /*
-         sendData[7] = addressDevice3[0];
-         sendData[8] = addressDevice3[1];
-         */
-         sendData[7] = '0';
-         sendData[8] = '3';
-         sendData[9] = '0';
-         sendData[10] = 'E';
-         checkstt(stt3);
-         stt3++;
-         while(busy == 1){
-            ;
-         }
-         Delay_ms(10);
-         RS485_send(sendData);
-         Delay_ms(100);
-         //RS485_send(sendData);
-         oldstate = 0;
-         Delay_ms(500);
-      }
-    }
-
   }
 }
 //process data send by RS485

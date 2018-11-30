@@ -8,11 +8,11 @@ _interrupt:
 	MOVWF      ___savePCLATH+0
 	CLRF       PCLATH+0
 
-;Slave_2_Buttons.c,34 :: 		void interrupt()
-;Slave_2_Buttons.c,36 :: 		if(PIR1.RCIF)
+;Slave_CA3.c,33 :: 		void interrupt()
+;Slave_CA3.c,35 :: 		if(PIR1.RCIF)
 	BTFSS      PIR1+0, 5
 	GOTO       L_interrupt0
-;Slave_2_Buttons.c,38 :: 		while(uart1_data_ready()==0);                             //while NO data in receive register
+;Slave_CA3.c,37 :: 		while(uart1_data_ready()==0);                             //while NO data in receive register
 L_interrupt1:
 	CALL       _UART1_Data_Ready+0
 	MOVF       R0+0, 0
@@ -21,39 +21,39 @@ L_interrupt1:
 	GOTO       L_interrupt2
 	GOTO       L_interrupt1
 L_interrupt2:
-;Slave_2_Buttons.c,39 :: 		if(uart1_data_ready()==1)                                 //if data is ready for reading
+;Slave_CA3.c,38 :: 		if(uart1_data_ready()==1)                                 //if data is ready for reading
 	CALL       _UART1_Data_Ready+0
 	MOVF       R0+0, 0
 	XORLW      1
 	BTFSS      STATUS+0, 2
 	GOTO       L_interrupt3
-;Slave_2_Buttons.c,41 :: 		tempReceiveData = UART1_Read();                        //see https://download.mikroe.com/documents/compilers/mikroc/pic/help/uart_library.htm#uart1_data_ready
+;Slave_CA3.c,40 :: 		tempReceiveData = UART1_Read();                        //see https://download.mikroe.com/documents/compilers/mikroc/pic/help/uart_library.htm#uart1_data_ready
 	CALL       _UART1_Read+0
 	MOVF       R0+0, 0
 	MOVWF      _tempReceiveData+0
-;Slave_2_Buttons.c,42 :: 		if(tempReceiveData == 'S')                             //received "S", enter transmitting mode
+;Slave_CA3.c,41 :: 		if(tempReceiveData == 'S')                             //received "S", enter transmitting mode
 	MOVF       R0+0, 0
 	XORLW      83
 	BTFSS      STATUS+0, 2
 	GOTO       L_interrupt4
-;Slave_2_Buttons.c,44 :: 		busy = 1;                                           //then UART will be busy
+;Slave_CA3.c,43 :: 		busy = 1;                                           //then UART will be busy
 	MOVLW      1
 	MOVWF      _busy+0
 	MOVLW      0
 	MOVWF      _busy+1
-;Slave_2_Buttons.c,45 :: 		count = 0;                                          //use var count to index received Data
+;Slave_CA3.c,44 :: 		count = 0;                                          //use var count to index received Data
 	CLRF       _count+0
-;Slave_2_Buttons.c,46 :: 		receiveData[count] = tempReceiveData;
+;Slave_CA3.c,45 :: 		receiveData[count] = tempReceiveData;
 	MOVF       _count+0, 0
 	ADDLW      _receiveData+0
 	MOVWF      FSR
 	MOVF       _tempReceiveData+0, 0
 	MOVWF      INDF+0
-;Slave_2_Buttons.c,47 :: 		count++;
+;Slave_CA3.c,46 :: 		count++;
 	INCF       _count+0, 1
-;Slave_2_Buttons.c,48 :: 		}
+;Slave_CA3.c,47 :: 		}
 L_interrupt4:
-;Slave_2_Buttons.c,49 :: 		if(tempReceiveData !='S' && tempReceiveData !='E')
+;Slave_CA3.c,48 :: 		if(tempReceiveData !='S' && tempReceiveData !='E')
 	MOVF       _tempReceiveData+0, 0
 	XORLW      83
 	BTFSC      STATUS+0, 2
@@ -63,42 +63,42 @@ L_interrupt4:
 	BTFSC      STATUS+0, 2
 	GOTO       L_interrupt7
 L__interrupt48:
-;Slave_2_Buttons.c,51 :: 		receiveData[count] = tempReceiveData;
+;Slave_CA3.c,50 :: 		receiveData[count] = tempReceiveData;
 	MOVF       _count+0, 0
 	ADDLW      _receiveData+0
 	MOVWF      FSR
 	MOVF       _tempReceiveData+0, 0
 	MOVWF      INDF+0
-;Slave_2_Buttons.c,52 :: 		count++;
+;Slave_CA3.c,51 :: 		count++;
 	INCF       _count+0, 1
-;Slave_2_Buttons.c,53 :: 		}
+;Slave_CA3.c,52 :: 		}
 L_interrupt7:
-;Slave_2_Buttons.c,54 :: 		if(tempReceiveData == 'E')
+;Slave_CA3.c,53 :: 		if(tempReceiveData == 'E')
 	MOVF       _tempReceiveData+0, 0
 	XORLW      69
 	BTFSS      STATUS+0, 2
 	GOTO       L_interrupt8
-;Slave_2_Buttons.c,56 :: 		receiveData[count] = tempReceiveData;
+;Slave_CA3.c,55 :: 		receiveData[count] = tempReceiveData;
 	MOVF       _count+0, 0
 	ADDLW      _receiveData+0
 	MOVWF      FSR
 	MOVF       _tempReceiveData+0, 0
 	MOVWF      INDF+0
-;Slave_2_Buttons.c,57 :: 		count=0;
+;Slave_CA3.c,56 :: 		count=0;
 	CLRF       _count+0
-;Slave_2_Buttons.c,58 :: 		flagReceivedAllData = 1;
+;Slave_CA3.c,57 :: 		flagReceivedAllData = 1;
 	MOVLW      1
 	MOVWF      _flagReceivedAllData+0
-;Slave_2_Buttons.c,59 :: 		busy = 0;
+;Slave_CA3.c,58 :: 		busy = 0;
 	CLRF       _busy+0
 	CLRF       _busy+1
-;Slave_2_Buttons.c,60 :: 		}
+;Slave_CA3.c,59 :: 		}
 L_interrupt8:
-;Slave_2_Buttons.c,61 :: 		}
+;Slave_CA3.c,60 :: 		}
 L_interrupt3:
-;Slave_2_Buttons.c,62 :: 		}
+;Slave_CA3.c,61 :: 		}
 L_interrupt0:
-;Slave_2_Buttons.c,63 :: 		}
+;Slave_CA3.c,62 :: 		}
 L_end_interrupt:
 L__interrupt54:
 	MOVF       ___savePCLATH+0, 0
@@ -112,21 +112,23 @@ L__interrupt54:
 
 _main:
 
-;Slave_2_Buttons.c,64 :: 		void main() {
-;Slave_2_Buttons.c,65 :: 		TRISB.B0 =1;                         //bit Button 1, input. Shall become output if value = 0
+;Slave_CA3.c,63 :: 		void main() {
+;Slave_CA3.c,64 :: 		TRISB.B0 =1;                         //bit Button 1, input. Shall become output if value = 0
 	BSF        TRISB+0, 0
-;Slave_2_Buttons.c,66 :: 		TRISB.B4 =1;                         //bit Button 2, input
+;Slave_CA3.c,65 :: 		TRISB.B4 =1;                         //bit Button 2, input
 	BSF        TRISB+0, 4
-;Slave_2_Buttons.c,69 :: 		TRISB.B3 =0;                         //Bit RS485, output
+;Slave_CA3.c,66 :: 		TRISB.B5 =1;                         //bit Button 3, intput
+	BSF        TRISB+0, 5
+;Slave_CA3.c,68 :: 		TRISB.B3 =0;                         //Bit RS485, output
 	BCF        TRISB+0, 3
-;Slave_2_Buttons.c,71 :: 		oldstate = 0;
+;Slave_CA3.c,70 :: 		oldstate = 0;
 	BCF        _oldstate+0, BitPos(_oldstate+0)
-;Slave_2_Buttons.c,72 :: 		UART1_Init(9600);                    //init UART1 with baudrate 9600 (capable of transferring a maximum of 9600 bits per second)
+;Slave_CA3.c,71 :: 		UART1_Init(9600);                    //init UART1 with baudrate 9600 (capable of transferring a maximum of 9600 bits per second)
 	MOVLW      129
 	MOVWF      SPBRG+0
 	BSF        TXSTA+0, 2
 	CALL       _UART1_Init+0
-;Slave_2_Buttons.c,73 :: 		Delay_ms(100);
+;Slave_CA3.c,72 :: 		Delay_ms(100);
 	MOVLW      3
 	MOVWF      R11+0
 	MOVLW      138
@@ -142,39 +144,39 @@ L_main9:
 	GOTO       L_main9
 	NOP
 	NOP
-;Slave_2_Buttons.c,75 :: 		RCIE_bit = 1;                        // enable interrupt on UART1 receive
+;Slave_CA3.c,74 :: 		RCIE_bit = 1;                        // enable interrupt on UART1 receive
 	BSF        RCIE_bit+0, BitPos(RCIE_bit+0)
-;Slave_2_Buttons.c,76 :: 		TXIE_bit = 0;                        // disable interrupt on UART1 transmit
+;Slave_CA3.c,75 :: 		TXIE_bit = 0;                        // disable interrupt on UART1 transmit
 	BCF        TXIE_bit+0, BitPos(TXIE_bit+0)
-;Slave_2_Buttons.c,77 :: 		PEIE_bit = 1;                        // enable peripheral interrupts
+;Slave_CA3.c,76 :: 		PEIE_bit = 1;                        // enable peripheral interrupts
 	BSF        PEIE_bit+0, BitPos(PEIE_bit+0)
-;Slave_2_Buttons.c,78 :: 		GIE_bit = 1;                         // enable all interrupts
+;Slave_CA3.c,77 :: 		GIE_bit = 1;                         // enable all interrupts
 	BSF        GIE_bit+0, BitPos(GIE_bit+0)
-;Slave_2_Buttons.c,84 :: 		addressButton1[0] = '0';             //ID Button 1: 0
+;Slave_CA3.c,83 :: 		addressButton1[0] = '0';             //ID Button 1: 0
 	MOVLW      48
 	MOVWF      _addressButton1+0
-;Slave_2_Buttons.c,85 :: 		addressButton1[1] = '4';             //ID Button 1: 1
-	MOVLW      52
+;Slave_CA3.c,84 :: 		addressButton1[1] = '6';             //ID Button 1: 1
+	MOVLW      54
 	MOVWF      _addressButton1+1
-;Slave_2_Buttons.c,86 :: 		addressDevice1[0] = '0';             //ID Device 1: 0
+;Slave_CA3.c,85 :: 		addressDevice1[0] = '0';             //ID Device 1: 0
 	MOVLW      48
 	MOVWF      _addressDevice1+0
-;Slave_2_Buttons.c,87 :: 		addressDevice1[1] = '4';             //ID Device 1: 1
-	MOVLW      52
+;Slave_CA3.c,86 :: 		addressDevice1[1] = '6';             //ID Device 1: 1
+	MOVLW      54
 	MOVWF      _addressDevice1+1
-;Slave_2_Buttons.c,89 :: 		addressButton2[0] = '0';
+;Slave_CA3.c,88 :: 		addressButton2[0] = '0';
 	MOVLW      48
 	MOVWF      _addressButton2+0
-;Slave_2_Buttons.c,90 :: 		addressButton2[1] = '5';
-	MOVLW      53
+;Slave_CA3.c,89 :: 		addressButton2[1] = '7';
+	MOVLW      55
 	MOVWF      _addressButton2+1
-;Slave_2_Buttons.c,91 :: 		addressDevice2[0] = '0';
+;Slave_CA3.c,90 :: 		addressDevice2[0] = '0';
 	MOVLW      48
 	MOVWF      _addressDevice2+0
-;Slave_2_Buttons.c,92 :: 		addressDevice2[1] = '5';
-	MOVLW      53
+;Slave_CA3.c,91 :: 		addressDevice2[1] = '7';
+	MOVLW      55
 	MOVWF      _addressDevice2+1
-;Slave_2_Buttons.c,112 :: 		Delay_ms(100);
+;Slave_CA3.c,111 :: 		Delay_ms(100);
 	MOVLW      3
 	MOVWF      R11+0
 	MOVLW      138
@@ -190,9 +192,9 @@ L_main10:
 	GOTO       L_main10
 	NOP
 	NOP
-;Slave_2_Buttons.c,130 :: 		while(1)
+;Slave_CA3.c,129 :: 		while(1)
 L_main11:
-;Slave_2_Buttons.c,183 :: 		if (Button(&PORTB, 0, 1, 1)) {               // Detect logical 1 => ON device
+;Slave_CA3.c,182 :: 		if (Button(&PORTB, 0, 1, 1)) {               // Detect logical 1 => ON device
 	MOVLW      PORTB+0
 	MOVWF      FARG_Button_port+0
 	CLRF       FARG_Button_pin+0
@@ -204,11 +206,11 @@ L_main11:
 	MOVF       R0+0, 0
 	BTFSC      STATUS+0, 2
 	GOTO       L_main13
-;Slave_2_Buttons.c,184 :: 		oldstate = 1;                              // Update flag
+;Slave_CA3.c,183 :: 		oldstate = 1;                              // Update flag
 	BSF        _oldstate+0, BitPos(_oldstate+0)
-;Slave_2_Buttons.c,185 :: 		}
+;Slave_CA3.c,184 :: 		}
 L_main13:
-;Slave_2_Buttons.c,186 :: 		if (oldstate && Button(&PORTB, 0, 1, 0)) {   // Detect one-to-zero transition (oldstate=1) from previous if
+;Slave_CA3.c,185 :: 		if (oldstate && Button(&PORTB, 0, 1, 0)) {   // Detect one-to-zero transition (oldstate=1) from previous if
 	BTFSS      _oldstate+0, BitPos(_oldstate+0)
 	GOTO       L_main16
 	MOVLW      PORTB+0
@@ -222,19 +224,23 @@ L_main13:
 	BTFSC      STATUS+0, 2
 	GOTO       L_main16
 L__main52:
-;Slave_2_Buttons.c,187 :: 		Delay_ms(20);                             // oldstate=1 && portB turns to 0
-	MOVLW      130
+;Slave_CA3.c,186 :: 		Delay_ms(100);                             // oldstate=1 && portB turns to 0
+	MOVLW      3
+	MOVWF      R11+0
+	MOVLW      138
 	MOVWF      R12+0
-	MOVLW      221
+	MOVLW      85
 	MOVWF      R13+0
 L_main17:
 	DECFSZ     R13+0, 1
 	GOTO       L_main17
 	DECFSZ     R12+0, 1
 	GOTO       L_main17
+	DECFSZ     R11+0, 1
+	GOTO       L_main17
 	NOP
 	NOP
-;Slave_2_Buttons.c,188 :: 		if (oldstate && Button(&PORTB, 0, 1, 0))   // => OFF device using below frame
+;Slave_CA3.c,187 :: 		if (oldstate && Button(&PORTB, 0, 1, 0))   // => OFF device using below frame
 	BTFSS      _oldstate+0, BitPos(_oldstate+0)
 	GOTO       L_main20
 	MOVLW      PORTB+0
@@ -248,50 +254,50 @@ L_main17:
 	BTFSC      STATUS+0, 2
 	GOTO       L_main20
 L__main51:
-;Slave_2_Buttons.c,194 :: 		sendData[0] = 'S';
+;Slave_CA3.c,193 :: 		sendData[0] = 'S';
 	MOVLW      83
 	MOVWF      _sendData+0
-;Slave_2_Buttons.c,195 :: 		sendData[1] = '0';
+;Slave_CA3.c,194 :: 		sendData[1] = '0';
 	MOVLW      48
 	MOVWF      _sendData+1
-;Slave_2_Buttons.c,196 :: 		sendData[2] = '0';
+;Slave_CA3.c,195 :: 		sendData[2] = '0';
 	MOVLW      48
 	MOVWF      _sendData+2
-;Slave_2_Buttons.c,197 :: 		sendData[3] = 'B';
+;Slave_CA3.c,196 :: 		sendData[3] = 'B';
 	MOVLW      66
 	MOVWF      _sendData+3
-;Slave_2_Buttons.c,198 :: 		sendData[4] = '0';
+;Slave_CA3.c,197 :: 		sendData[4] = '0';
 	MOVLW      48
 	MOVWF      _sendData+4
-;Slave_2_Buttons.c,199 :: 		sendData[5] = '4';
-	MOVLW      52
+;Slave_CA3.c,198 :: 		sendData[5] = '6';
+	MOVLW      54
 	MOVWF      _sendData+5
-;Slave_2_Buttons.c,202 :: 		sendData[6] = 'D';
+;Slave_CA3.c,201 :: 		sendData[6] = 'D';
 	MOVLW      68
 	MOVWF      _sendData+6
-;Slave_2_Buttons.c,203 :: 		sendData[7] = '0';
+;Slave_CA3.c,202 :: 		sendData[7] = '0';
 	MOVLW      48
 	MOVWF      _sendData+7
-;Slave_2_Buttons.c,204 :: 		sendData[8] = '4';
-	MOVLW      52
+;Slave_CA3.c,203 :: 		sendData[8] = '6';
+	MOVLW      54
 	MOVWF      _sendData+8
-;Slave_2_Buttons.c,207 :: 		sendData[9] = '0';                          //bit turn OFF
+;Slave_CA3.c,206 :: 		sendData[9] = '0';                          //bit turn OFF
 	MOVLW      48
 	MOVWF      _sendData+9
-;Slave_2_Buttons.c,208 :: 		sendData[10] = 'E';                         //end frame
+;Slave_CA3.c,207 :: 		sendData[10] = 'E';                         //end frame
 	MOVLW      69
 	MOVWF      _sendData+10
-;Slave_2_Buttons.c,209 :: 		checkstt(stt1);
+;Slave_CA3.c,208 :: 		checkstt(stt1);
 	MOVF       _stt1+0, 0
 	MOVWF      FARG_checkstt_stt+0
 	MOVF       _stt1+1, 0
 	MOVWF      FARG_checkstt_stt+1
 	CALL       _checkstt+0
-;Slave_2_Buttons.c,210 :: 		stt1++;                                     //increase stt1, init stt1=1
+;Slave_CA3.c,209 :: 		stt1++;                                     //increase stt1, init stt1=1
 	INCF       _stt1+0, 1
 	BTFSC      STATUS+0, 2
 	INCF       _stt1+1, 1
-;Slave_2_Buttons.c,211 :: 		while(busy == 1){
+;Slave_CA3.c,210 :: 		while(busy == 1){
 L_main21:
 	MOVLW      0
 	XORWF      _busy+1, 0
@@ -302,10 +308,10 @@ L_main21:
 L__main56:
 	BTFSS      STATUS+0, 2
 	GOTO       L_main22
-;Slave_2_Buttons.c,213 :: 		}
+;Slave_CA3.c,212 :: 		}
 	GOTO       L_main21
 L_main22:
-;Slave_2_Buttons.c,214 :: 		Delay_ms(10);
+;Slave_CA3.c,213 :: 		Delay_ms(10);
 	MOVLW      65
 	MOVWF      R12+0
 	MOVLW      238
@@ -316,11 +322,11 @@ L_main23:
 	DECFSZ     R12+0, 1
 	GOTO       L_main23
 	NOP
-;Slave_2_Buttons.c,215 :: 		RS485_send(sendData);
+;Slave_CA3.c,214 :: 		RS485_send(sendData);
 	MOVLW      _sendData+0
 	MOVWF      FARG_RS485_send_dat+0
 	CALL       _RS485_send+0
-;Slave_2_Buttons.c,216 :: 		Delay_ms(100);
+;Slave_CA3.c,215 :: 		Delay_ms(100);
 	MOVLW      3
 	MOVWF      R11+0
 	MOVLW      138
@@ -336,9 +342,9 @@ L_main24:
 	GOTO       L_main24
 	NOP
 	NOP
-;Slave_2_Buttons.c,218 :: 		oldstate = 0;                           // Update flag
+;Slave_CA3.c,217 :: 		oldstate = 0;                           // Update flag
 	BCF        _oldstate+0, BitPos(_oldstate+0)
-;Slave_2_Buttons.c,219 :: 		Delay_ms(500);
+;Slave_CA3.c,218 :: 		Delay_ms(500);
 	MOVLW      13
 	MOVWF      R11+0
 	MOVLW      175
@@ -353,11 +359,11 @@ L_main25:
 	DECFSZ     R11+0, 1
 	GOTO       L_main25
 	NOP
-;Slave_2_Buttons.c,220 :: 		}
+;Slave_CA3.c,219 :: 		}
 L_main20:
-;Slave_2_Buttons.c,221 :: 		}
+;Slave_CA3.c,220 :: 		}
 L_main16:
-;Slave_2_Buttons.c,224 :: 		if (Button(&PORTB, 4, 1, 1)) {               // Detect logical one => ON device
+;Slave_CA3.c,223 :: 		if (Button(&PORTB, 4, 1, 1)) {               // Detect logical one => ON device
 	MOVLW      PORTB+0
 	MOVWF      FARG_Button_port+0
 	MOVLW      4
@@ -370,11 +376,11 @@ L_main16:
 	MOVF       R0+0, 0
 	BTFSC      STATUS+0, 2
 	GOTO       L_main26
-;Slave_2_Buttons.c,225 :: 		oldstate = 1;                              // Update flag
+;Slave_CA3.c,224 :: 		oldstate = 1;                              // Update flag
 	BSF        _oldstate+0, BitPos(_oldstate+0)
-;Slave_2_Buttons.c,226 :: 		}
+;Slave_CA3.c,225 :: 		}
 L_main26:
-;Slave_2_Buttons.c,227 :: 		if (oldstate && Button(&PORTB, 4, 1, 0)) {   // Detect one-to-zero transition => OFF device using below frame
+;Slave_CA3.c,226 :: 		if (oldstate && Button(&PORTB, 4, 1, 0)) {   // Detect one-to-zero transition => OFF device using below frame
 	BTFSS      _oldstate+0, BitPos(_oldstate+0)
 	GOTO       L_main29
 	MOVLW      PORTB+0
@@ -389,19 +395,23 @@ L_main26:
 	BTFSC      STATUS+0, 2
 	GOTO       L_main29
 L__main50:
-;Slave_2_Buttons.c,228 :: 		Delay_ms(20);
-	MOVLW      130
+;Slave_CA3.c,227 :: 		Delay_ms(100);
+	MOVLW      3
+	MOVWF      R11+0
+	MOVLW      138
 	MOVWF      R12+0
-	MOVLW      221
+	MOVLW      85
 	MOVWF      R13+0
 L_main30:
 	DECFSZ     R13+0, 1
 	GOTO       L_main30
 	DECFSZ     R12+0, 1
 	GOTO       L_main30
+	DECFSZ     R11+0, 1
+	GOTO       L_main30
 	NOP
 	NOP
-;Slave_2_Buttons.c,229 :: 		if (oldstate && Button(&PORTB, 4, 1, 0))
+;Slave_CA3.c,228 :: 		if (oldstate && Button(&PORTB, 4, 1, 0))
 	BTFSS      _oldstate+0, BitPos(_oldstate+0)
 	GOTO       L_main33
 	MOVLW      PORTB+0
@@ -416,50 +426,50 @@ L_main30:
 	BTFSC      STATUS+0, 2
 	GOTO       L_main33
 L__main49:
-;Slave_2_Buttons.c,231 :: 		sendData[0] = 'S';
+;Slave_CA3.c,230 :: 		sendData[0] = 'S';
 	MOVLW      83
 	MOVWF      _sendData+0
-;Slave_2_Buttons.c,232 :: 		sendData[1] = '0';
+;Slave_CA3.c,231 :: 		sendData[1] = '0';
 	MOVLW      48
 	MOVWF      _sendData+1
-;Slave_2_Buttons.c,233 :: 		sendData[2] = '0';
+;Slave_CA3.c,232 :: 		sendData[2] = '0';
 	MOVLW      48
 	MOVWF      _sendData+2
-;Slave_2_Buttons.c,234 :: 		sendData[3] = 'B';
+;Slave_CA3.c,233 :: 		sendData[3] = 'B';
 	MOVLW      66
 	MOVWF      _sendData+3
-;Slave_2_Buttons.c,239 :: 		sendData[4] = '0';
+;Slave_CA3.c,238 :: 		sendData[4] = '0';
 	MOVLW      48
 	MOVWF      _sendData+4
-;Slave_2_Buttons.c,240 :: 		sendData[5] = '5';
-	MOVLW      53
+;Slave_CA3.c,239 :: 		sendData[5] = '7';
+	MOVLW      55
 	MOVWF      _sendData+5
-;Slave_2_Buttons.c,241 :: 		sendData[6] = 'D';
+;Slave_CA3.c,240 :: 		sendData[6] = 'D';
 	MOVLW      68
 	MOVWF      _sendData+6
-;Slave_2_Buttons.c,246 :: 		sendData[7] = '0';
+;Slave_CA3.c,245 :: 		sendData[7] = '0';
 	MOVLW      48
 	MOVWF      _sendData+7
-;Slave_2_Buttons.c,247 :: 		sendData[8] = '5';
-	MOVLW      53
+;Slave_CA3.c,246 :: 		sendData[8] = '7';
+	MOVLW      55
 	MOVWF      _sendData+8
-;Slave_2_Buttons.c,248 :: 		sendData[9] = '0';
+;Slave_CA3.c,247 :: 		sendData[9] = '0';
 	MOVLW      48
 	MOVWF      _sendData+9
-;Slave_2_Buttons.c,249 :: 		sendData[10] = 'E';
+;Slave_CA3.c,248 :: 		sendData[10] = 'E';
 	MOVLW      69
 	MOVWF      _sendData+10
-;Slave_2_Buttons.c,250 :: 		checkstt(stt2);
+;Slave_CA3.c,249 :: 		checkstt(stt2);
 	MOVF       _stt2+0, 0
 	MOVWF      FARG_checkstt_stt+0
 	MOVF       _stt2+1, 0
 	MOVWF      FARG_checkstt_stt+1
 	CALL       _checkstt+0
-;Slave_2_Buttons.c,251 :: 		stt2++;
+;Slave_CA3.c,250 :: 		stt2++;
 	INCF       _stt2+0, 1
 	BTFSC      STATUS+0, 2
 	INCF       _stt2+1, 1
-;Slave_2_Buttons.c,252 :: 		while(busy == 1){
+;Slave_CA3.c,251 :: 		while(busy == 1){
 L_main34:
 	MOVLW      0
 	XORWF      _busy+1, 0
@@ -470,10 +480,10 @@ L_main34:
 L__main57:
 	BTFSS      STATUS+0, 2
 	GOTO       L_main35
-;Slave_2_Buttons.c,254 :: 		}
+;Slave_CA3.c,253 :: 		}
 	GOTO       L_main34
 L_main35:
-;Slave_2_Buttons.c,255 :: 		Delay_ms(10);
+;Slave_CA3.c,254 :: 		Delay_ms(10);
 	MOVLW      65
 	MOVWF      R12+0
 	MOVLW      238
@@ -484,11 +494,11 @@ L_main36:
 	DECFSZ     R12+0, 1
 	GOTO       L_main36
 	NOP
-;Slave_2_Buttons.c,256 :: 		RS485_send(sendData);
+;Slave_CA3.c,255 :: 		RS485_send(sendData);
 	MOVLW      _sendData+0
 	MOVWF      FARG_RS485_send_dat+0
 	CALL       _RS485_send+0
-;Slave_2_Buttons.c,257 :: 		Delay_ms(100);
+;Slave_CA3.c,256 :: 		Delay_ms(100);
 	MOVLW      3
 	MOVWF      R11+0
 	MOVLW      138
@@ -504,9 +514,9 @@ L_main37:
 	GOTO       L_main37
 	NOP
 	NOP
-;Slave_2_Buttons.c,259 :: 		oldstate = 0;                           // Update flag
+;Slave_CA3.c,258 :: 		oldstate = 0;                           // Update flag
 	BCF        _oldstate+0, BitPos(_oldstate+0)
-;Slave_2_Buttons.c,260 :: 		Delay_ms(500);
+;Slave_CA3.c,259 :: 		Delay_ms(500);
 	MOVLW      13
 	MOVWF      R11+0
 	MOVLW      175
@@ -521,23 +531,23 @@ L_main38:
 	DECFSZ     R11+0, 1
 	GOTO       L_main38
 	NOP
-;Slave_2_Buttons.c,261 :: 		}
+;Slave_CA3.c,260 :: 		}
 L_main33:
-;Slave_2_Buttons.c,262 :: 		}
+;Slave_CA3.c,261 :: 		}
 L_main29:
-;Slave_2_Buttons.c,263 :: 		}
+;Slave_CA3.c,262 :: 		}
 	GOTO       L_main11
-;Slave_2_Buttons.c,264 :: 		}
+;Slave_CA3.c,263 :: 		}
 L_end_main:
 	GOTO       $+0
 ; end of _main
 
 _RS485_send:
 
-;Slave_2_Buttons.c,267 :: 		void RS485_send (char dat[])
-;Slave_2_Buttons.c,270 :: 		PORTB.RB3 =1;                        //bit RS485 on, transmitting
+;Slave_CA3.c,266 :: 		void RS485_send (char dat[])
+;Slave_CA3.c,269 :: 		PORTB.RB3 =1;                        //bit RS485 on, transmitting
 	BSF        PORTB+0, 3
-;Slave_2_Buttons.c,271 :: 		Delay_ms(100);
+;Slave_CA3.c,270 :: 		Delay_ms(100);
 	MOVLW      3
 	MOVWF      R11+0
 	MOVLW      138
@@ -553,7 +563,7 @@ L_RS485_send39:
 	GOTO       L_RS485_send39
 	NOP
 	NOP
-;Slave_2_Buttons.c,272 :: 		for (i=0; i<=10;i++){
+;Slave_CA3.c,271 :: 		for (i=0; i<=10;i++){
 	CLRF       RS485_send_i_L0+0
 	CLRF       RS485_send_i_L0+1
 L_RS485_send40:
@@ -569,7 +579,7 @@ L_RS485_send40:
 L__RS485_send59:
 	BTFSS      STATUS+0, 0
 	GOTO       L_RS485_send41
-;Slave_2_Buttons.c,273 :: 		while(UART1_Tx_Idle()==0);           //while data has NOT been transmitted
+;Slave_CA3.c,272 :: 		while(UART1_Tx_Idle()==0);           //while data has NOT been transmitted
 L_RS485_send43:
 	CALL       _UART1_Tx_Idle+0
 	MOVF       R0+0, 0
@@ -578,21 +588,21 @@ L_RS485_send43:
 	GOTO       L_RS485_send44
 	GOTO       L_RS485_send43
 L_RS485_send44:
-;Slave_2_Buttons.c,274 :: 		UART1_Write(dat[i]);                 //sendData[] passed into function and 10 char of command frame is transmitted
+;Slave_CA3.c,273 :: 		UART1_Write(dat[i]);                 //sendData[] passed into function and 10 char of command frame is transmitted
 	MOVF       RS485_send_i_L0+0, 0
 	ADDWF      FARG_RS485_send_dat+0, 0
 	MOVWF      FSR
 	MOVF       INDF+0, 0
 	MOVWF      FARG_UART1_Write_data_+0
 	CALL       _UART1_Write+0
-;Slave_2_Buttons.c,272 :: 		for (i=0; i<=10;i++){
+;Slave_CA3.c,271 :: 		for (i=0; i<=10;i++){
 	INCF       RS485_send_i_L0+0, 1
 	BTFSC      STATUS+0, 2
 	INCF       RS485_send_i_L0+1, 1
-;Slave_2_Buttons.c,275 :: 		}
+;Slave_CA3.c,274 :: 		}
 	GOTO       L_RS485_send40
 L_RS485_send41:
-;Slave_2_Buttons.c,276 :: 		Delay_ms(100);
+;Slave_CA3.c,275 :: 		Delay_ms(100);
 	MOVLW      3
 	MOVWF      R11+0
 	MOVLW      138
@@ -608,17 +618,17 @@ L_RS485_send45:
 	GOTO       L_RS485_send45
 	NOP
 	NOP
-;Slave_2_Buttons.c,277 :: 		PORTB.RB3 =0;                        //bit RS485 into idle state
+;Slave_CA3.c,276 :: 		PORTB.RB3 =0;                        //bit RS485 into idle state
 	BCF        PORTB+0, 3
-;Slave_2_Buttons.c,278 :: 		}
+;Slave_CA3.c,277 :: 		}
 L_end_RS485_send:
 	RETURN
 ; end of _RS485_send
 
 _checkstt:
 
-;Slave_2_Buttons.c,286 :: 		void checkstt (int stt)
-;Slave_2_Buttons.c,288 :: 		if (stt % 2 == 0)       //if stt chia het cho 2 => even number
+;Slave_CA3.c,285 :: 		void checkstt (int stt)
+;Slave_CA3.c,287 :: 		if (stt % 2 == 0)       //if stt chia het cho 2 => even number
 	MOVLW      2
 	MOVWF      R4+0
 	MOVLW      0
@@ -641,16 +651,16 @@ _checkstt:
 L__checkstt61:
 	BTFSS      STATUS+0, 2
 	GOTO       L_checkstt46
-;Slave_2_Buttons.c,289 :: 		sendData[9] = '0';      //then turn OFF device (press button Twice)
+;Slave_CA3.c,288 :: 		sendData[9] = '0';      //then turn OFF device (press button Twice)
 	MOVLW      48
 	MOVWF      _sendData+9
 	GOTO       L_checkstt47
 L_checkstt46:
-;Slave_2_Buttons.c,291 :: 		sendData[9] = '1';      //else turn ON device (press button Once)
+;Slave_CA3.c,290 :: 		sendData[9] = '1';      //else turn ON device (press button Once)
 	MOVLW      49
 	MOVWF      _sendData+9
 L_checkstt47:
-;Slave_2_Buttons.c,292 :: 		}
+;Slave_CA3.c,291 :: 		}
 L_end_checkstt:
 	RETURN
 ; end of _checkstt

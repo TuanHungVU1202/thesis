@@ -1,13 +1,12 @@
-#line 1 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_2_Devices.c"
-#line 21 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_2_Devices.c"
+#line 1 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_DA3.c"
+#line 21 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_DA3.c"
 bit oldstate;
 
 int stt1 =1, stt2 =1,stt3 = 1;
 char flagReceivedAllData = 0;
 char count = 0, tempReceiveData,receiveData[11];
 char sendData[11];
-char addressDevice1[2], addressDevice2[2];
-
+char addressDevice1[2], addressDevice2[2], addressDevice3[2];
 void RS485_send (char dat[]);
 
 
@@ -43,7 +42,7 @@ void interrupt()
 void main() {
  TRISB.B0 =0;
  TRISB.B4 =0;
-
+ TRISB.B5 =0;
 
  TRISB.B3 =0;
 
@@ -58,26 +57,28 @@ void main() {
 
 
  addressDevice1[0] = '0';
- addressDevice1[1] = '4';
+ addressDevice1[1] = '6';
  addressDevice2[0] = '0';
- addressDevice2[1] = '5';
-#line 94 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_2_Devices.c"
+ addressDevice2[1] = '7';
+ addressDevice3[0] = '0';
+ addressDevice3[1] = '3';
+#line 93 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_DA3.c"
  Delay_ms(100);
-#line 112 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_2_Devices.c"
+#line 111 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_DA3.c"
  Delay_ms(1000);
  PORTB.RB0 =1;
  PORTB.RB4 =1;
-
+ PORTB.RB5 =1;
  Delay_ms(500);
  PORTB.RB0 =0;
  PORTB.RB4 =0;
-
+ PORTB.RB5 =0;
  while(1)
  {
 
  if(flagReceivedAllData==1){
  flagReceivedAllData = 0;
-#line 151 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_2_Devices.c"
+#line 150 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_DA3.c"
  if(receiveData[1] == '1' && receiveData[2] == '0' && receiveData[3] == 'D'){
  if(receiveData[4] == addressDevice1[0] && receiveData[5] == addressDevice1[1]){
  if(receiveData[9] == '1'){
@@ -95,7 +96,14 @@ void main() {
  PORTB.RB4 =0;
  }
  }
-#line 178 "C:/Users/HP/Google Drive (1450231@hcmut.edu.vn)/BK/Thesis/myOwnWork/Code/Slave_2_Devices/Slave_2_Devices.c"
+ if(receiveData[4] == addressDevice3[0] && receiveData[5] == addressDevice3[1]){
+ if(receiveData[9] == '1'){
+ PORTB.RB5 =1;
+ }
+ if(receiveData[9] == '0'){
+ PORTB.RB5 =0;
+ }
+ }
  }
  }
 

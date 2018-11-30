@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=Slave_2_Devices.c
+Value=Slave_DA3.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -17,7 +17,7 @@ Value=0
 Value=
 [FILES]
 Count=1
-File0=Slave_2_Devices.c
+File0=Slave_DA3.c
 [BINARIES]
 Count=0
 [IMAGES]
@@ -25,7 +25,7 @@ Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
 Count=1
-File0=Slave_2_Devices.c
+File0=Slave_DA3.c
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
