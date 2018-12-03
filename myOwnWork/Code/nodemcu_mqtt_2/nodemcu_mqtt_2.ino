@@ -1,5 +1,13 @@
+#include <FS.h>                   //this needs to be first, or it all crashes and burns...
+
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+//needed for library
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager
+
+#include <ArduinoJson.h>          //https://github.com/bblanchon/ArduinoJson
 
 /*
 const char* ssid     = "P811";
@@ -17,12 +25,18 @@ const char* host = "192.168.0.105";
 */
 
 //setup mqtt client params
-const char* ssid     = "Erasmus";
-const char* password = "lifein5months";
-const char* mqttServer = "192.168.0.107";
-const int mqttPort = 3000;
+//const char* ssid     = "Erasmus";
+//const char* password = "lifein5months";
+//const char* mqttServer = "192.168.0.107";
+//const int mqttPort = 3000;
 //const char* mqttUser = "YourMqttUser";
 //const char* mqttPassword = "YourMqttUserPassword";
+
+char mqtt_server[40];
+
+//flag for saving data
+bool shouldSaveConfig = false;
+
 String topic_str;
 String message_str;
 
@@ -40,11 +54,113 @@ char tempDeviceTime[5],flagUpdateSetTime[11],device1TimeOn[5],device1TimeOff[5],
  
 WiFiClient espClient;
 PubSubClient client(espClient);
+//WiFiManager
+//Local intialization. Once its business is done, there is no need to keep it around
+WiFiManager wifiManager;
+
+//callback notifying us of the need to save config
+void saveConfigCallback () {
+  Serial.println("Should save config");
+  shouldSaveConfig = true;
+}
 
 
 //Start program
 void setup() {
   Serial.begin(9600);
+
+   //read configuration from FS json
+  Serial.println("mounting FS...");
+
+  if (SPIFFS.begin()) {
+    Serial.println("mounted file system");
+    if (SPIFFS.exists("/config.json")) {
+      //file exists, reading and loading
+      Serial.println("reading config file");
+      File configFile = SPIFFS.open("/config.json", "r");
+      if (configFile) {
+        Serial.println("opened config file");
+        size_t size = configFile.size();
+        // Allocate a buffer to store contents of the file.
+        std::unique_ptr<char[]> buf(new char[size]);
+
+        configFile.readBytes(buf.get(), size);
+        DynamicJsonBuffer jsonBuffer;
+        JsonObject& json = jsonBuffer.parseObject(buf.get());
+        json.printTo(Serial);
+        if (json.success()) {
+          Serial.println("\nparsed json");
+
+          strcpy(mqtt_server, json["mqtt_server"]);
+
+        } else {
+          Serial.println("failed to load json config");
+        }
+        configFile.close();
+      }
+    }
+  } else {
+    Serial.println("failed to mount FS");
+  }
+  //end read
+
+
+
+  // The extra parameters to be configured (can be either global or just in the setup)
+  // After connecting, parameter.getValue() will get you the configured value
+  // id/name placeholder/prompt default length
+  WiFiManagerParameter custom_mqtt_server("server", "mqtt server", mqtt_server, 40);
+
+  //set config save notify callback
+  wifiManager.setSaveConfigCallback(saveConfigCallback);
+
+  
+  //add all your parameters here
+  wifiManager.addParameter(&custom_mqtt_server);
+
+
+
+  //fetches ssid and pass and tries to connect
+  //if it does not connect it starts an access point with the specified name
+  //here  "AutoConnectAP"
+  //and goes into a blocking loop awaiting configuration
+  if (!wifiManager.autoConnect("Esp_AP", "password")) {
+    Serial.println("failed to connect and hit timeout");
+    delay(3000);
+    //reset and try again, or maybe put it to deep sleep
+    ESP.reset();
+    delay(5000);
+  }
+
+  //if you get here you have connected to the WiFi
+  Serial.println("connected...yeey :)");
+
+  //read updated parameters
+  strcpy(mqtt_server, custom_mqtt_server.getValue());
+  client.setServer(mqtt_server, 3000);
+  client.setCallback(callback);
+
+
+  //save the custom parameters to FS
+  if (shouldSaveConfig) {
+    Serial.println("saving config");
+    DynamicJsonBuffer jsonBuffer;
+    JsonObject& json = jsonBuffer.createObject();
+    json["mqtt_server"] = mqtt_server;
+
+
+    File configFile = SPIFFS.open("/config.json", "w");
+    if (!configFile) {
+      Serial.println("failed to open config file for writing");
+    }
+
+    json.printTo(Serial);
+    json.printTo(configFile);
+    configFile.close();
+    //end save
+  }
+
+  /*
   WiFi.begin(ssid, password);
  
   while (WiFi.status() != WL_CONNECTED) {
@@ -66,6 +182,8 @@ void setup() {
       delay(2000);
     }
   }
+
+*/
   client.publish("fromEsp/control/device/1", "Hello from ESP8266");
   
   client.subscribe("toEsp/control/device/1");
@@ -89,7 +207,6 @@ void setup() {
   configState();
   delay(500);
 }
-
 
 //main callback
 void callback(char* topic, byte* payload, unsigned int length) {
