@@ -12,6 +12,14 @@
 \fancyfoot[CO]{\thepage}
 \usepackage{indentfirst}
 \usepackage{tocbibind}
+\usepackage{siunitx}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=black,  %choose some color if you want links to stand out
+}
 
 % use style=superborder to create table
 \usepackage[acronym,nomain,nopostdot,nogroupskip,style=super,nonumberlist,toc]{glossaries}
@@ -20,9 +28,9 @@
 
 
 \title{
-    {\large Ho Chi Minh City University of Technology}\\
+    {\huge Ho Chi Minh City University of Technology}\\
     {\includegraphics[width=100mm, scale=0.7]{BK_logo.png}}\\
-    {\Huge Smart Home}\\
+    {\huge Smart Home}\\
 }
 \author{Student: Tuan-Hung VU\\ID: 1450231}
 \date{Day Month Year}
@@ -44,7 +52,7 @@
 
 \tableofcontents
 % \listoffigures
-% use below block to add "Figure" in front of aption in list of figures
+% use below block to add "Figure" in front of the caption in list of figures
 {%
 \let\oldnumberline\numberline%
 \renewcommand{\numberline}{\figurename~\oldnumberline}%
@@ -67,12 +75,15 @@
 % \section{Test 2.1}
 % \input{chapters/sections/sections2.1}
  
-\chapter{Chapter Three Title}
+\chapter{Hardware Design of The System}
 \input{chapters/chapter03}
  
-\chapter{Chapter Four Title}
+\chapter{Algorithm and Software Design of The Project}
 \input{chapters/chapter04}
  
+\chapter{Experimental Results}\label{result}
+\input{chapters/chapter05}
+
 \chapter{Conclusion}
 \input{chapters/conclusion}
 

@@ -555,7 +555,7 @@ function loadStateFromSystem () {
             deviceState.device5 = receivedMessage;
             floor1.updateMany(
                 {"_id": "F1.5"},
-                {$set: {"_id": "F1.5", name: "Bathroom Light", state: deviceState.device5}},
+                {$set: {"_id": "F1.5", name: "Bedroom Light", state: deviceState.device5}},
                 {upsert: true}
             );
         }

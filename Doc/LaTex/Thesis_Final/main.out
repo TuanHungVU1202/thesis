@@ -1,0 +1,54 @@
+\BOOKMARK [0][-]{chapter*.3}{Contents}{}% 1
+\BOOKMARK [0][-]{chapter*.4}{List of Figures}{}% 2
+\BOOKMARK [0][-]{chapter*.5}{List of Tables}{}% 3
+\BOOKMARK [0][-]{section*.6}{Acronym and Abbreviation}{}% 4
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 5
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Microcontroller}{chapter.2}% 7
+\BOOKMARK [2][-]{subsection.2.1.1}{Theory}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.2}{Microcontroller structure}{section.2.1}% 9
+\BOOKMARK [2][-]{subsection.2.1.3}{Microcontroller market}{section.2.1}% 10
+\BOOKMARK [1][-]{section.2.2}{Communication}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.1}{Introduction}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.2}{RS-485}{section.2.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.3}{MQTT}{section.2.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.4}{WebSocket}{section.2.2}% 15
+\BOOKMARK [1][-]{section.2.3}{Facial Recognition}{chapter.2}% 16
+\BOOKMARK [0][-]{chapter.3}{Hardware Design of The System}{}% 17
+\BOOKMARK [1][-]{section.3.1}{Expected System Diagram}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.2}{Master Design}{chapter.3}% 19
+\BOOKMARK [2][-]{subsection.3.2.1}{Microcontroller Requirements}{section.3.2}% 20
+\BOOKMARK [2][-]{subsection.3.2.2}{Module RS-485}{section.3.2}% 21
+\BOOKMARK [2][-]{subsection.3.2.3}{Module ESP-8266}{section.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.2.4}{Module SIM800A}{section.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.2.5}{Power for Master}{section.3.2}% 24
+\BOOKMARK [1][-]{section.3.3}{Slave Design}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{Requirements}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{Power for Slaves}{section.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.3.3}{Module RS-485}{section.3.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.4}{Controller Block}{section.3.3}% 29
+\BOOKMARK [2][-]{subsection.3.3.5}{Button Block of Slave Button\(s\)}{section.3.3}% 30
+\BOOKMARK [2][-]{subsection.3.3.6}{Relay block of Slave Relay\(s\)}{section.3.3}% 31
+\BOOKMARK [1][-]{section.3.4}{Security Camera Block}{chapter.3}% 32
+\BOOKMARK [1][-]{section.3.5}{Full Schematic of the System}{chapter.3}% 33
+\BOOKMARK [0][-]{chapter.4}{Algorithm and Software Design of The Project}{}% 34
+\BOOKMARK [1][-]{section.4.1}{Features explanation}{chapter.4}% 35
+\BOOKMARK [2][-]{subsection.4.1.1}{Convenient control}{section.4.1}% 36
+\BOOKMARK [2][-]{subsection.4.1.2}{Block Diagram}{section.4.1}% 37
+\BOOKMARK [1][-]{section.4.2}{Communication Methodology and Algorithm of Master and Slaves}{chapter.4}% 38
+\BOOKMARK [2][-]{subsection.4.2.1}{Transmitting Frame Design}{section.4.2}% 39
+\BOOKMARK [2][-]{subsection.4.2.2}{Working flowchart of Master and Slaves}{section.4.2}% 40
+\BOOKMARK [1][-]{section.4.3}{Internet Application Block Design}{chapter.4}% 41
+\BOOKMARK [2][-]{subsection.4.3.1}{Internet Block}{section.4.3}% 42
+\BOOKMARK [2][-]{subsection.4.3.2}{Web Server}{section.4.3}% 43
+\BOOKMARK [2][-]{subsection.4.3.3}{Database}{section.4.3}% 44
+\BOOKMARK [2][-]{subsection.4.3.4}{Security Camera Block}{section.4.3}% 45
+\BOOKMARK [0][-]{chapter.5}{Experimental Results}{}% 46
+\BOOKMARK [1][-]{section.5.1}{Completed Demonstration Hardware Model}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.2}{Power for Master and the Slaves}{chapter.5}% 48
+\BOOKMARK [1][-]{section.5.3}{UI of Web Server}{chapter.5}% 49
+\BOOKMARK [1][-]{section.5.4}{UI and results of Security Camera Block}{chapter.5}% 50
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 51
+\BOOKMARK [1][-]{section.6.1}{Achievement}{chapter.6}% 52
+\BOOKMARK [1][-]{section.6.2}{Limitation}{chapter.6}% 53
+\BOOKMARK [1][-]{section.6.3}{Future Work}{chapter.6}% 54
