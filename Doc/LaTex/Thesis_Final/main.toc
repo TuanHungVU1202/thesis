@@ -19,55 +19,55 @@
 \contentsline {subsection}{\numberline {2.2.3}MQTT}{9}{subsection.2.2.3}
 \contentsline {subsection}{\numberline {2.2.4}WebSocket}{10}{subsection.2.2.4}
 \contentsline {section}{\numberline {2.3}Facial Recognition}{10}{section.2.3}
-\contentsline {chapter}{\numberline {3}Hardware Design of The System}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Expected System Diagram}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Master Design}{12}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Microcontroller Requirements}{12}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Module RS-485}{14}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Module ESP-8266}{16}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Power for Master}{17}{subsection.3.2.4}
-\contentsline {section}{\numberline {3.3}Slave Design}{19}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Requirements}{19}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Power for Slaves}{20}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Module RS-485}{20}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Controller Block}{20}{subsection.3.3.4}
-\contentsline {subsection}{\numberline {3.3.5}Button Block of Slave Button(s)}{21}{subsection.3.3.5}
-\contentsline {subsection}{\numberline {3.3.6}Relay block of Slave Relay(s)}{23}{subsection.3.3.6}
-\contentsline {section}{\numberline {3.4}Security Camera Block}{24}{section.3.4}
-\contentsline {section}{\numberline {3.5}Full Schematic of the System}{27}{section.3.5}
-\contentsline {chapter}{\numberline {4}Algorithm and Software Design of The Project}{32}{chapter.4}
-\contentsline {section}{\numberline {4.1}Features explanation}{32}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Convenient control}{32}{subsection.4.1.1}
-\contentsline {subsubsection}{Living Room}{32}{section*.6}
-\contentsline {subsubsection}{Dining Room}{32}{section*.7}
-\contentsline {subsubsection}{Bedroom}{32}{section*.8}
-\contentsline {subsection}{\numberline {4.1.2}Block Diagram}{33}{subsection.4.1.2}
-\contentsline {subsubsection}{Master}{33}{section*.9}
-\contentsline {subsubsection}{Slave Relay(s)}{33}{section*.10}
-\contentsline {subsubsection}{Slave Button(s)}{33}{section*.11}
-\contentsline {subsubsection}{Internet Application Block}{35}{section*.12}
-\contentsline {section}{\numberline {4.2}Communication Methodology and Algorithm of Master and Slaves}{35}{section.4.2}
-\contentsline {subsubsection}{Ask/Request sequentially}{35}{section*.13}
-\contentsline {subsubsection}{Work sequentially}{36}{section*.14}
-\contentsline {subsection}{\numberline {4.2.1}Transmitting Frame Design}{37}{subsection.4.2.1}
-\contentsline {subsubsection}{Master to Slave Relays}{37}{section*.15}
-\contentsline {subsubsection}{Slave Button to Master frames}{38}{section*.16}
-\contentsline {subsection}{\numberline {4.2.2}Working flowchart of Master and Slaves}{39}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Internet Application Block Design}{42}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Internet Block}{42}{subsection.4.3.1}
-\contentsline {subsubsection}{MQTT Protocol}{42}{section*.17}
-\contentsline {subsection}{\numberline {4.3.2}Web Server}{44}{subsection.4.3.2}
-\contentsline {subsubsection}{Back-End Design}{44}{section*.18}
-\contentsline {subsubsection}{Front-End Design}{47}{section*.19}
-\contentsline {subsection}{\numberline {4.3.3}Database}{49}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Security Camera Block}{50}{subsection.4.3.4}
-\contentsline {chapter}{\numberline {5}Experimental Results}{55}{chapter.5}
-\contentsline {section}{\numberline {5.1}Completed Demonstration Hardware Model}{55}{section.5.1}
-\contentsline {section}{\numberline {5.2}Power for Master and the Slaves}{55}{section.5.2}
-\contentsline {section}{\numberline {5.3}UI of Web Server}{63}{section.5.3}
-\contentsline {section}{\numberline {5.4}UI and results of Security Camera Block}{67}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusion}{69}{chapter.6}
-\contentsline {section}{\numberline {6.1}Achievement}{69}{section.6.1}
-\contentsline {section}{\numberline {6.2}Limitation}{70}{section.6.2}
-\contentsline {section}{\numberline {6.3}Future Work}{70}{section.6.3}
-\contentsline {chapter}{Bibliography}{71}{chapter*.20}
+\contentsline {chapter}{\numberline {3}Hardware Design of The System}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Expected System Diagram}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Master Design}{14}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Microcontroller Requirements}{14}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Module RS-485}{16}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Module ESP-8266}{18}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Power for Master}{19}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}Slave Design}{21}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Requirements}{21}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Power for Slaves}{22}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Module RS-485}{22}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Controller Block}{22}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}Button Block of Slave Button(s)}{23}{subsection.3.3.5}
+\contentsline {subsection}{\numberline {3.3.6}Relay block of Slave Relay(s)}{25}{subsection.3.3.6}
+\contentsline {section}{\numberline {3.4}Security Camera Block}{26}{section.3.4}
+\contentsline {section}{\numberline {3.5}Full Schematic of the System}{29}{section.3.5}
+\contentsline {chapter}{\numberline {4}Algorithm and Software Design of The Project}{34}{chapter.4}
+\contentsline {section}{\numberline {4.1}Features explanation}{34}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Convenient control}{34}{subsection.4.1.1}
+\contentsline {subsubsection}{Living Room}{34}{section*.6}
+\contentsline {subsubsection}{Dining Room}{34}{section*.7}
+\contentsline {subsubsection}{Bedroom}{34}{section*.8}
+\contentsline {subsection}{\numberline {4.1.2}Block Diagram}{35}{subsection.4.1.2}
+\contentsline {subsubsection}{Master}{35}{section*.9}
+\contentsline {subsubsection}{Slave Relay(s)}{35}{section*.10}
+\contentsline {subsubsection}{Slave Button(s)}{35}{section*.11}
+\contentsline {subsubsection}{Internet Application Block}{37}{section*.12}
+\contentsline {section}{\numberline {4.2}Communication Methodology and Algorithm of Master and Slaves}{37}{section.4.2}
+\contentsline {subsubsection}{Ask/Request sequentially}{37}{section*.13}
+\contentsline {subsubsection}{Work sequentially}{38}{section*.14}
+\contentsline {subsection}{\numberline {4.2.1}Transmitting Frame Design}{39}{subsection.4.2.1}
+\contentsline {subsubsection}{Master to Slave Relays}{39}{section*.15}
+\contentsline {subsubsection}{Slave Button to Master frames}{40}{section*.16}
+\contentsline {subsection}{\numberline {4.2.2}Working flowchart of Master and Slaves}{41}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Internet Application Block Design}{44}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Internet Block}{44}{subsection.4.3.1}
+\contentsline {subsubsection}{MQTT Protocol}{44}{section*.17}
+\contentsline {subsection}{\numberline {4.3.2}Web Server}{46}{subsection.4.3.2}
+\contentsline {subsubsection}{Back-End Design}{46}{section*.18}
+\contentsline {subsubsection}{Front-End Design}{49}{section*.19}
+\contentsline {subsection}{\numberline {4.3.3}Database}{51}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Security Camera Block}{52}{subsection.4.3.4}
+\contentsline {chapter}{\numberline {5}Experimental Results}{57}{chapter.5}
+\contentsline {section}{\numberline {5.1}Completed Demonstration Hardware Model}{57}{section.5.1}
+\contentsline {section}{\numberline {5.2}Power for Master and the Slaves}{57}{section.5.2}
+\contentsline {section}{\numberline {5.3}UI of Web Server}{65}{section.5.3}
+\contentsline {section}{\numberline {5.4}UI and results of Security Camera Block}{69}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusion}{71}{chapter.6}
+\contentsline {section}{\numberline {6.1}Achievement}{71}{section.6.1}
+\contentsline {section}{\numberline {6.2}Limitation}{72}{section.6.2}
+\contentsline {section}{\numberline {6.3}Future Work}{72}{section.6.3}
+\contentsline {chapter}{Bibliography}{73}{chapter*.20}

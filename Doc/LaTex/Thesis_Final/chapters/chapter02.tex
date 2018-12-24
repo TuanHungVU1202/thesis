@@ -131,7 +131,40 @@
     Figure~\ref{fig:wsPrinciple} illustrates how WebSocket works. There are two parts of the protocol, handshaking and transmitting data. At first, client sends a request to server to initialize the websocket connection, the server then send an acceptance to connect. After this point, the data are being sent as WS frame with numbering as in the Figure~\ref{fig:wsPrinciple}.
 
 \section{Facial Recognition}
-%TODO: finish facial recognition chapter
+This is a field of Computer Vision, and also considered as a field in Biometrics researches. Facial Recognition is the technique implemented to detect and recognize face(s) in photos or real-time video, then compare to pre-calculated data to predict with probability. In general, face recognition has similar characteristics with fingerprint recognition or iris recognition, the significantly different is the step to extract features of individual field. Iris recognition and fingerprint recognition have plenty of applications with extremely high accuracy, meanwhile face recognition still has difficulties because of its dependent on environment. There are plenty of methodologies to implement a facial recognition, the more difficult and resource cost, the more accurate it is. In this thesis, the author use \gls{lbph}, which is already built in the library named OpenCV.
+
+\gls{lbph} usually comes with two more recognizers, namely EigenFaces Face Recognizer and FisherFaces Recognizer. While Eigenfaces and Fisherfaces are affected significantly by environment light, LBPH is an improvement. The idea is not to find the local features of an image. LBPH algorithm tries to find the local structure of an image, and it does that by comparing each pixel with its neighbouring pixels.
+\begin{figure}[!ht]
+  \begin{center}
+    \includegraphics[scale=0.6]{images/lbph.png}
+    \caption{How LBPH works}
+    \label{fig:lbph1}
+  \end{center}
+\end{figure}
+
+Based on the Figure~\ref{fig:lbph1}, the process is broke in to smaller steps as following.
+\begin{itemize}
+\item We have a grayscale face image.
+\item Take 3x3 matrix of pixel
+\item Present intensity from 0 to 255.
+\item Take central value as the threshold and will be use to define new value from the neighbors (this case choose 8).
+\item For each neighbor of the central value (threshold), we set a new binary value. We set 1 for values equal or higher than the threshold and 0 for values lower than the threshold.
+\item Now, the matrix will contain only binary values (ignoring the central value). We need to concatenate each binary value from each position from the matrix line by line into a new binary value (e.g. 10001101). 
+\item Then, we convert this binary value to a decimal value and set it to the central value of the matrix, which is actually a pixel from the original image.
+\item At the end of this procedure (LBP procedure), we have a new image which represents better the characteristics of the original image.
+\end{itemize}
+Now stepping to extract histogram of the above result, please refers to figure~\ref{fig:lbph2}
+\begin{figure}[!ht]
+  \begin{center}
+    \includegraphics[scale=0.5]{images/lbph2.png}
+    \caption{How LBPH works (2)}
+    \label{fig:lbph2}
+  \end{center}
+\end{figure}
+\begin{itemize}
+\item As we have an image in grayscale, each histogram (from each grid X and Y) will contain only 256 positions (0~255) representing the occurrences of each pixel intensity.
+\item Then, we need to concatenate each histogram to create a new and bigger histogram. Supposing we have 8x8 grids, we will have 8x8x256=16.384 positions in the final histogram. The final histogram represents the characteristics of the image original image.
+\end{itemize}
 
 
 

@@ -6,74 +6,76 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces RS-485 waveform}}{8}{figure.2.3}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Simple example of a MQTT system}}{9}{figure.2.4}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces WebSocket working principle}}{10}{figure.2.5}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces How LBPH works}}{11}{figure.2.6}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces How LBPH works (2)}}{12}{figure.2.7}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Expected hardware blocks}}{11}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces STM32F4 Discovery Kit}}{13}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Header for STM32F4 Discovery Kit}}{14}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Header for module RS-485}}{15}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Module RS-485}}{15}{figure.3.5}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Module ESP-8266 NodeMCU lua CP2102}}{16}{figure.3.6}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Header for Power blocks for Master}}{17}{figure.3.7}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Output header of Power for Master}}{17}{figure.3.8}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Module LM2596}}{18}{figure.3.9}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Module ASM1117}}{18}{figure.3.10}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Microchip PIC16F628A}}{19}{figure.3.11}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Power supply for Slaves 1}}{20}{figure.3.12}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Power supply for Slaves 2}}{21}{figure.3.13}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Header for module RS-485 in Slave circuits}}{21}{figure.3.14}
-\contentsline {figure}{\numberline {3.15}{\ignorespaces MCU of Slave Button(s)}}{22}{figure.3.15}
-\contentsline {figure}{\numberline {3.16}{\ignorespaces MCU of Slave Relay(s)}}{22}{figure.3.16}
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Button block of Slave Button(s)}}{23}{figure.3.17}
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Relay block of Slave Relay(s)}}{23}{figure.3.18}
-\contentsline {figure}{\numberline {3.19}{\ignorespaces Raspberry Pi 3 Model B}}{24}{figure.3.19}
-\contentsline {figure}{\numberline {3.20}{\ignorespaces Raspberry Pi Camera Module}}{25}{figure.3.20}
-\contentsline {figure}{\numberline {3.21}{\ignorespaces Raspberry Pi Connected with PiCamera Module}}{26}{figure.3.21}
-\contentsline {figure}{\numberline {3.22}{\ignorespaces Full Schematic of Power for Master}}{27}{figure.3.22}
-\contentsline {figure}{\numberline {3.23}{\ignorespaces Header for STM32F4 Discovery Kit}}{28}{figure.3.23}
-\contentsline {figure}{\numberline {3.24}{\ignorespaces Master: Header for module RS-485 of Master}}{28}{figure.3.24}
-\contentsline {figure}{\numberline {3.25}{\ignorespaces Master: Header for other modules}}{29}{figure.3.25}
-\contentsline {figure}{\numberline {3.26}{\ignorespaces Slave Button(s)}}{29}{figure.3.26}
-\contentsline {figure}{\numberline {3.27}{\ignorespaces Slave Relay(1)}}{30}{figure.3.27}
-\contentsline {figure}{\numberline {3.28}{\ignorespaces Slave Relay(2)}}{31}{figure.3.28}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Expected hardware blocks}}{13}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces STM32F4 Discovery Kit}}{15}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Header for STM32F4 Discovery Kit}}{16}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Header for module RS-485}}{17}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Module RS-485}}{17}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Module ESP-8266 NodeMCU lua CP2102}}{18}{figure.3.6}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Header for Power blocks for Master}}{19}{figure.3.7}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Output header of Power for Master}}{19}{figure.3.8}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Module LM2596}}{20}{figure.3.9}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Module ASM1117}}{20}{figure.3.10}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Microchip PIC16F628A}}{21}{figure.3.11}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Power supply for Slaves 1}}{22}{figure.3.12}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Power supply for Slaves 2}}{23}{figure.3.13}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Header for module RS-485 in Slave circuits}}{23}{figure.3.14}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces MCU of Slave Button(s)}}{24}{figure.3.15}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces MCU of Slave Relay(s)}}{24}{figure.3.16}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Button block of Slave Button(s)}}{25}{figure.3.17}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Relay block of Slave Relay(s)}}{25}{figure.3.18}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Raspberry Pi 3 Model B}}{26}{figure.3.19}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Raspberry Pi Camera Module}}{27}{figure.3.20}
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Raspberry Pi Connected with PiCamera Module}}{28}{figure.3.21}
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Full Schematic of Power for Master}}{29}{figure.3.22}
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Header for STM32F4 Discovery Kit}}{30}{figure.3.23}
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Master: Header for module RS-485 of Master}}{30}{figure.3.24}
+\contentsline {figure}{\numberline {3.25}{\ignorespaces Master: Header for other modules}}{31}{figure.3.25}
+\contentsline {figure}{\numberline {3.26}{\ignorespaces Slave Button(s)}}{31}{figure.3.26}
+\contentsline {figure}{\numberline {3.27}{\ignorespaces Slave Relay(1)}}{32}{figure.3.27}
+\contentsline {figure}{\numberline {3.28}{\ignorespaces Slave Relay(2)}}{33}{figure.3.28}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces System Block Diagram}}{34}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Example of transmitting frames}}{38}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Flowchart of Master}}{40}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Flowchart of Slave Button}}{41}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Flowchart of Slave Relay}}{41}{figure.4.5}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Topics subscribed by NodeMCU}}{42}{figure.4.6}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Flowchart of working principle of NodeMCU}}{43}{figure.4.7}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Node.js Working Principle}}{44}{figure.4.8}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Topics subscribed by Web Server}}{45}{figure.4.9}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Control messages shown as Buffer Payload in corresponded topic}}{46}{figure.4.10}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Flowchart of each function blocks in Web Server}}{47}{figure.4.11}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Flowchart of Indoor Security Camera}}{48}{figure.4.12}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Data of collection Floor1}}{49}{figure.4.13}
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Data of collection logDeviceActivities}}{49}{figure.4.14}
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Data of collection logFaceDetection}}{50}{figure.4.15}
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Data of collection logMotion}}{50}{figure.4.16}
-\contentsline {figure}{\numberline {4.17}{\ignorespaces Flowchart of Register step - Gathering dataset}}{52}{figure.4.17}
-\contentsline {figure}{\numberline {4.18}{\ignorespaces Flowchart of Train data step - Training from dataset}}{53}{figure.4.18}
-\contentsline {figure}{\numberline {4.19}{\ignorespaces Flowchart of Recognition step - Recognition from trained data}}{54}{figure.4.19}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces System Block Diagram}}{36}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Example of transmitting frames}}{40}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Flowchart of Master}}{42}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Flowchart of Slave Button}}{43}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Flowchart of Slave Relay}}{43}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Topics subscribed by NodeMCU}}{44}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Flowchart of working principle of NodeMCU}}{45}{figure.4.7}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Node.js Working Principle}}{46}{figure.4.8}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Topics subscribed by Web Server}}{47}{figure.4.9}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Control messages shown as Buffer Payload in corresponded topic}}{48}{figure.4.10}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Flowchart of each function blocks in Web Server}}{49}{figure.4.11}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Flowchart of Indoor Security Camera}}{50}{figure.4.12}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Data of collection Floor1}}{51}{figure.4.13}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Data of collection logDeviceActivities}}{51}{figure.4.14}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Data of collection logFaceDetection}}{52}{figure.4.15}
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Data of collection logMotion}}{52}{figure.4.16}
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Flowchart of Register step - Gathering dataset}}{54}{figure.4.17}
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Flowchart of Train data step - Training from dataset}}{55}{figure.4.18}
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Flowchart of Recognition step - Recognition from trained data}}{56}{figure.4.19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Completed Demonstration Model}}{55}{figure.5.1}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Power for Master circuit}}{56}{figure.5.2}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Master circuit}}{57}{figure.5.3}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Slave 3 Buttons circuit}}{58}{figure.5.4}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Slave 2 Buttons circuit}}{59}{figure.5.5}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Slave 1 Button circuit}}{60}{figure.5.6}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Slave 3 Relays circuit}}{61}{figure.5.7}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Slave 2 Relays circuit}}{62}{figure.5.8}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Login page}}{63}{figure.5.9}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Control page}}{63}{figure.5.10}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Scenes page}}{64}{figure.5.11}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Indoor Camera page}}{64}{figure.5.12}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Control page on smart device with responsive website design}}{65}{figure.5.13}
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Door is Accessed by an Unknown person}}{66}{figure.5.14}
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Door is Accessed by the owner}}{66}{figure.5.15}
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Motion detected}}{66}{figure.5.16}
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Announcement of sent email from command line}}{66}{figure.5.17}
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Main UI of the software on Raspberry Pi}}{67}{figure.5.18}
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Admin UI of the pre-processing steps on Raspberry Pi}}{68}{figure.5.19}
-\contentsline {figure}{\numberline {5.20}{\ignorespaces Result of Facial Recognition function}}{68}{figure.5.20}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Completed Demonstration Model}}{57}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Power for Master circuit}}{58}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Master circuit}}{59}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Slave 3 Buttons circuit}}{60}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Slave 2 Buttons circuit}}{61}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Slave 1 Button circuit}}{62}{figure.5.6}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Slave 3 Relays circuit}}{63}{figure.5.7}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Slave 2 Relays circuit}}{64}{figure.5.8}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Login page}}{65}{figure.5.9}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Control page}}{65}{figure.5.10}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Scenes page}}{66}{figure.5.11}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Indoor Camera page}}{66}{figure.5.12}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Control page on smart device with responsive website design}}{67}{figure.5.13}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Door is Accessed by an Unknown person}}{68}{figure.5.14}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Door is Accessed by the owner}}{68}{figure.5.15}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Motion detected}}{68}{figure.5.16}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Announcement of sent email from command line}}{68}{figure.5.17}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Main UI of the software on Raspberry Pi}}{69}{figure.5.18}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Admin UI of the pre-processing steps on Raspberry Pi}}{70}{figure.5.19}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Result of Facial Recognition function}}{70}{figure.5.20}
 \addvspace {10\p@ }
