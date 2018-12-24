@@ -118,7 +118,57 @@ This section presents the User Interface of the Web Server the author had introd
     \label{fig:controlOnCell}
     \end{center}
 \end{figure}
+\begin{figure}[!htb]
+    \begin{center}
+    \includegraphics[scale=0.8]{images/doorAccess1.jpg}
+    \caption{Door is Accessed by an Unknown person}
+    \label{fig:doorAccess1}
+    \end{center}
+\end{figure}
+\begin{figure}[!htb]
+    \begin{center}
+    \includegraphics[scale=0.8]{images/doorAccess2.jpg}
+    \caption{Door is Accessed by the owner}
+    \label{fig:doorAccess2}
+    \end{center}
+\end{figure}
+\begin{figure}[!htb]
+    \begin{center}
+    \includegraphics[scale=0.8]{images/emailAlert.jpg}
+    \caption{Motion detected}
+    \label{fig:emailAlert}
+    \end{center}
+\end{figure}
+\begin{figure}[!htb]
+    \begin{center}
+    \includegraphics[scale=0.8]{images/emailSent.png}
+    \caption{Announcement of sent email from command line}
+    \label{fig:emailSent}
+    \end{center}
+\end{figure}
+
+Refers from the Figure~\ref{fig:doorAccess1} to Figure~\ref{fig:emailSent}, they are the results of sent email to alert the owner in the event that any strange motion is detected while they are absent from the house. Furthermore, the access session of the Door is also alerted by email to the owner for them to keep track of the main entrance.
 
 \section{UI and results of Security Camera Block}
-Outdoor Security Camera Block is implemented in Raspberry Pi with a simple UI, which is illustrated with Figure~\ref{fig:piUI}. Also, the author shows the result of a recognized face with a small text is put beside with the rectangular ROI. However, the facial recognition system still, depends a lots on the environment condition, which leads to low rate of accuracy (about 70\% correct). The author’s intention is implementing the facial recognition with automatically open the main door after a face recognized. The processing speed is amazingly fast but it would make the thesis becomes more difficult to demonstrate, therefore, the system must be terminated by pressing ESC button on the keyboard.
-%TODO: finish adding photos for Raspberry Pi
+Outdoor Security Camera Block is implemented in Raspberry Pi with a simple UI, which is illustrated with Figure~\ref{fig:rpiUi} is the main UI and Figure~\ref{fig:rpiAdminUi} is the interface to collect and train data. Also, the author shows the result of a recognized face with a small text is put beside with the rectangular ROI. However, the facial recognition system still, depends a lots on the environment condition, which leads to low rate of accuracy (about 70\% correct). The author’s intention is implementing the facial recognition with automatically open the main door after a face recognized. The processing speed is amazingly fast but it would make the thesis becomes more difficult to demonstrate, therefore, the system must be terminated by pressing ESC button on the keyboard. The result is shown with figure~\ref{fig:rpiCap}.
+\begin{figure}[!htb]
+    \begin{center}
+    \includegraphics[scale=0.85]{images/rpiUi.png}
+    \caption{Main UI of the software on Raspberry Pi}
+    \label{fig:rpiUi}
+    \end{center}
+\end{figure}
+\begin{figure}[!htb]
+    \begin{center}
+    \includegraphics[scale=0.85]{images/rpiAdminUi.png}
+    \caption{Admin UI of the pre-processing steps on Raspberry Pi}
+    \label{fig:rpiAdminUi}
+    \end{center}
+\end{figure}
+\begin{figure}[!htb]
+    \begin{center}
+    \includegraphics[scale=0.85]{images/rpiCap.png}
+    \caption{Result of Facial Recognition function}
+    \label{fig:rpiCap}
+    \end{center}
+\end{figure}

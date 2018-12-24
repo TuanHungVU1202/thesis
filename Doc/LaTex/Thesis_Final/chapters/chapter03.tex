@@ -35,7 +35,7 @@
     \subsection{Microcontroller Requirements}
     There are few requirements for the Microcontroller that the author decided to build the system for the thesis, listed as following.
     \begin{itemize}
-        \item Support UART in order to communicate with other modules, namely RS-485, ESP8266 and SIM800A.
+        \item Support UART in order to communicate with other modules, namely RS-485, and ESP8266.
         \item Has widely support community.
         \item Easy to learn to program.
         \item Extendable with installed components.
@@ -154,8 +154,7 @@
             \end{center}
           \end{figure}
 
-          \subsection{Module SIM800A}
-          %TODO: finish module SIM800A
+          % \subsection{Module SIM800A}
 
           \subsection{Power for Master}\label{powerForMasterDesign}
           In order to provide enough power for every module mentioned above, the author uses a AC/DC adapter with output 12V-5A as the main power supply with a honeycomb power source 12V-3A as a backup one as illustrated in Figure~\ref{fig:powerMaster}. In the Power for Master circuit, module LM2596 which is a buck converter, used to convert 12VDC to 5VDC. 

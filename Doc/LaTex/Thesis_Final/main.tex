@@ -44,10 +44,10 @@
 \maketitle
 %------------------------------------------------------------
 \pagenumbering{roman}
-\chapter*{Abstract}
+\chapter*{\centering Abstract}
 \input{chapters/abstract}
 
-\chapter*{Acknowledgements}
+\chapter*{\centering Acknowledgements}
 \input{chapters/acknowledgements}
 
 \tableofcontents
@@ -86,5 +86,9 @@
 
 \chapter{Conclusion}
 \input{chapters/conclusion}
+
+\nocite{*} % to test all bib entrys <===================================
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}

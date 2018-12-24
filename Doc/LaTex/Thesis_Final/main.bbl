@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{mosca}
+Alif Abdullah.
+\newblock Setting up private mqtt broker using mosca in node.js, 2016.
+
+\bibitem{tuananh}
+Tran Xuan~Tuan Anh.
+\newblock Thiet ke mo hinh i-home.
+\newblock 2016.
+
+\bibitem{motion}
+Will Boyd.
+\newblock Motion detection with javascript, 2016.
+
+\bibitem{facerecognition}
+Kelvin~Salton do~Prado.
+\newblock Face recognition: Understanding lbph algorithm, 2017.
+
+\bibitem{opencv}
+OpenCV Doc.
+\newblock Face recognition with opencv, 1999.
+
+\bibitem{face1}
+Divyansh Dwivedi.
+\newblock Face recognition for beginners, 2018.
+
+\bibitem{hagiang}
+Truong~Ha Giang.
+\newblock Tim hieu, thiet ke va thi cong mo hinh nha thong minh smart home.
+\newblock 2017.
+
+\end{thebibliography}
