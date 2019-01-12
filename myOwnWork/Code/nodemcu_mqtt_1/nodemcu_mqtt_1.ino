@@ -17,9 +17,9 @@ const char* host = "192.168.0.105";
 */
 
 //setup mqtt client params
-const char* ssid     = "Erasmus";
+const char* ssid     = "Erasmus_s7";
 const char* password = "lifein5months";
-const char* mqttServer = "192.168.0.103";
+const char* mqttServer = "192.168.43.141";
 const int mqttPort = 3000;
 //const char* mqttUser = "YourMqttUser";
 //const char* mqttPassword = "YourMqttUserPassword";
